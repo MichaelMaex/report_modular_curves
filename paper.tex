@@ -107,7 +107,14 @@
 
 \section{Introduction}
 
-Modular forms, elliptic curves and modular forms are three seemingly unrelated conceps that have suprising connections. bla bla blah
+This is the report of the journey of a student learning about elliptic curves. 
+This report should be thought of as my notes while working my way through the first chapters of \emph{A First Course in Modular Forms} by Fred Diamond and Jerry Shurman. 
+This book is my main reference. 
+Most of this report is paraphrasing this book, but I've added some details where I thought the book was lacking. 
+I've also tried to add some visual intuitions I developed to aid my understanding of this material. I hope potential readers will find these useful as well. 
+
+Modular forms, elliptic curves and modular forms are three seemingly unrelated concepts that have surprising connections. 
+The goal of this report is to understand these objects and how they are related. 
 
 \section{Modular Forms}
 Modular forms are function on the complex half plane $\mathcal{H} $ that are invariant in some sense under the action of a group (or subgroups of) called the modular group.
@@ -336,7 +343,7 @@ So topologically this space is homeomorphic to the torus.
 \end{figure}
 
 The modular group tells us when two two lattices are equal. 
-\begin{lemma}
+\begin{lemma}\label{lem:equality_of_lattices}
 	Let $\Lambda = \omega_1\Z \oplus \omega_2\Z$ and $\Lambda' = \omega_1'\Z \oplus \omega_2\Z$ be two lattices. 
 	Then $\Lambda = \Lambda'$ if and only if there exists an $\begin{pmatrix} a & b \\ c& d \end{pmatrix} \in \SL_2\Z$ such that \[
 	\begin{pmatrix} \omega_1' \\ \omega_2' \end{pmatrix}  = 
@@ -412,10 +419,38 @@ In light of this we want to know how such a maps look like. It turns our there l
 	So $\lambda / m \not\in  \Lambda$. But $\phi(\lambda m) = b + \Lambda' = \phi(\lambda)$. Thus $\phi$ is not injective. So there is no inverse.
 	\rtl It can be easily checked that the map $\psi: \C / \Lambda' \to \Lambda: z + \Lambda \mapsto  \frac{z-b}{m} + \Lambda$ is an inverse. 
 \end{proof}
+
+\subsection{Modular Forms and Complex Tori} \label{sec:modular_forms_and_complex_tori}
+We now have a notion of \emph{morphisms} between complex tori. We can now ask ourselves the question how equivalence classes of isomorphic complex tori look like.
+It turns out that every complex torus $\C / \Lambda$ is \emph{isormorphic} to a torus of the form $\C / \Lambda_\tau$, where $\Lambda_\tau = \tau \Z \oplus \Z$, for some $\tau \in  \mathcal{H}$. 
+Indeed, by definition $\Lambda = \omega_1 \Z \oplus \omega_2 \Z$ for some $\omega_1, \omega_2 \in \C$ such that $\omega_1 / \omega_2 \in \mathcal{H} $. Let $\tau = \omega_1 / \omega_2$. 
+Then $\frac{1}{\omega_1} \Lambda = \Lambda_\tau$. 
+So the map  \[
+\phi: \frac{\C}{ \Lambda} \to \frac{\C}{\Lambda_\tau}: z + \Lambda \mapsto \frac{z}{\omega_1} + \Lambda_\tau
+\]
+is an isomorphism.
+
+This $\tau$ however may not be unique. Suppose that for some $\tau' \in \mathcal{H} $ the torus $\C / \Lambda_{\tau'}$ is also isomorphic to $\C / \Lambda$. In that cause $\C / \Lambda_{\tau'}$ is also isomorphic to $\C / \Lambda_{\tau}$. 
+Then for some $m$ it must be the case that $m \Lambda_{\tau'} = m\tau' \Z \oplus m \Z = \Lambda_\tau$. 
+By \cref{lem:equality_of_lattices} this implies that there is some $\gamma = \begin{pmatrix} a & b \\ c& d \end{pmatrix}  \in \SL_2\Z$ \[
+\begin{pmatrix} m\tau' \\ m \end{pmatrix}  = \begin{pmatrix} a & b \\ c& d \end{pmatrix}  \begin{pmatrix} \tau \\ 1 \end{pmatrix} 
+.\] 
+So \[
+\tau' = \frac{m \tau'}{m} = \frac{a \tau + b}{c \tau + d} = \gamma\cdot \tau
+.\] 
+Hence we see that $\tau$ and $\tau'$ lie in the same orbit of the action of $\SL_2\Z$. 
+Converesely $\C / \Lambda_\tau$ and $\C / \Lambda_{\gamma\cdot \tau}$ will always be isomorhic.
+Hence we conclude that there is a bijctice correspondence of isomorphism classes of complex tori and orbits of $\SL_2\Z$ acting on $\mathcal{H} $.\[
+\begin{tikzcd}
+	\left\{ \substack{\text{isormorphism classes} \\ \text{of complex tori}} \right\} \arrow[r, leftrightarrow] & 
+	\mathcal{H} / \SL_2\ 
+\end{tikzcd}
+.\] 
+\subsection{Isogenies}
 If we only consider the maps where the contsant term $b$ is $0$ then these maps are clearly group morphisms between $\C / \Lambda$ and  $\C / \Lambda'$. 
 As a result, the a holomorphic group morphism between these two tori exists if and only if $m\Lambda = \Lambda'$ for some $m \in \C$. 
 A nonzero holomorphic group morphism between complex tori is called an \emph{isogeny}.
-\todo{say something about the connection between complex tori and holomorphisms, beginning p27 }
+
 \begin{lemma}
 	Isogenies are surjective and have a finite kernel. 
 \end{lemma}
@@ -429,15 +464,29 @@ A nonzero holomorphic group morphism between complex tori is called an \emph{iso
 	The inclusion map is an injective group morphism from $\Z^2$ to  $\Z^2$ which must be of finite index. 
 	So there are only finitely many $z + \Lambda$ such that  $\phi(z + \Lambda) = 0$.
 \end{proof}
+To gain a more intuitive understanding of isogenies, it is helpful to think of them as functions on the plane that map lattices \emph{into} lattices.
+In this context, we see that an isogeneny can scale and rotate the lattice but we cannot skew it as illustrated in \cref{fig:isogeny}.
+\begin{figure}[h]
+	\centering
+\incfig{isogeny_complex_plane}
+\caption{An isogeny from a lattice $\Lambda$ generated by $\omega_1$ and $\omega_2$ to a lattice $\Lambda'$ generated by $\omega_1'$ and $\omega_2'$}.
+\label{fig:isogeny}
+\end{figure}
+
 \begin{example}
 	The so called \emph{multiply by integer maps} are isogenies. These are maps of the form \[
 		[N]: \C / \Lambda \to \C / \Lambda: z + \Lambda \mapsto  Nz + \Lambda
-	.\] 
-	Note that the of this map is $\frac{1}{N}\Lambda / \Lambda$ and is isomorphic to $\Z / N \Z \times  \Z / N \Z$. 
+	,\] where $N$ is an integer. 
+	Note that the kernel of this map is $\frac{1}{N}\Lambda / \Lambda$ and is isomorphic to $\Z / N \Z \times  \Z / N \Z$. We denote this kernel as $E[N]$ and is the set of all $N$ torsion points in $\C / \Lambda$. This can be seen in \cref{fig:Ntorsion_subgroup}.
 \end{example}
+	\begin{figure}[h]
+		\incfig{NTorsion_subgroup}	
+		\caption{The $N$-torsion subgroup $E[N]$ of a complex torus, generated by  $\omega_1 / N$ and $\omega_2 / N$.}
+		\label{fig:Ntorsion_subgroup}
+	\end{figure}
 \begin{example}
 	Another example are the \emph{Cyclic quotient maps}. 
-	Let  $\C \ \Lambda$ be a complex torus and  $N \in \N$.
+	Let  $\C / \Lambda$ be a complex torus and  $N \in \N$.
 	If take an $N$ torsion point, $\lambda$, of $\C / \Lambda$ (a point in $\frac{1}{N} \Lambda / \Lambda$) then we can consider the subgroup $C$ generated by $\lambda$. Note that $C + \Lambda$ is a super lattice of $\Lambda$. Then the map \[
 		\pi: \C \ \Lambda \to \C / (C + \lambda): z + \Lambda \to z + C + \Lambda
 	\]  
@@ -466,6 +515,52 @@ These two examples are very important, as they allow the construction of every i
 		z + \Lambda \mapsto nz + \Lambda \mapsto  nz + nK + \Lambda \mapsto  mz + \Lambda' \phi(z + \Lambda)
 	.\]  
 \end{proof}
+\todo{dual isogenies, weil pairings}
+\section{Ellpitic curves and their connection to Complex Tori}
+An elliptic curve is a cubic curve of the form \[
+y^2 = 4x^3 - g_2x - g_3
+,\] 
+where $g_2, g_3 \in \Z$ and $g_2^3 - 27 g_3^2 \ne 0$. 
+These objects are related to complex tori, by the meromorphic functions from the complex tori to the complex plane. 
+A mermorphic function $\phi: \C / \Lambda \to \C \cup \{\infty\} $ are naturally identified with a  $\Lambda$-periodic function $\phi: \C \to \C \cup \{\infty\}$.
+One may wonder how a non-trivial example of such a function looks like. 
+One example of particular interest is the \emph{Weierstrass $\wp$-function}. 
+For a given lattice  $\Lambda$ we define this function to be \[
+	\wp(z) = \frac{1}{z^2} + \sum_{\substack{\omega \in \Lambda \\ \omega \ne 0}}\left( \frac{1}{(z-\omega)^2} - \frac{1}{\omega^2} \right) 
+.\] 
+At first glance it seems obvious that such a function is $\Lambda$ periodic, but we have to be careful. 
+While this sum is absolutely convergent on compact sets, its is not if we split up $\frac{1}{(z-\omega^2)} - \frac{1}{\omega^2}$ into two different summations. So we cannot simply permute the terms in the desired way. 
+It still is $\Lambda$-periodic. Indeed, notice that  \[
+	\wp'(z) = -2 \sum_{\omega \in \Lambda} \frac{1}{(z - \omega)^3}
+\] 
+this is periodic function as we can permute the terms in the sum.
+We will now show that this implies that $\wp$ is $\Lambda$-periodic (exercise 1.4.2).
+Note that $\wp$ is symmetric, as showing this can indeed be achieved by permuting the right terms.
+For any $\omega \in \Lambda$ is holds that 
+\[
+	(\wp(z) - \wp(z + \omega))' = \wp'(z) - \wp'(z+ \omega) = 0 
+.\] 
+From this it follows that $\wp(z) - \wp(z + \omega)$ is constant a constant function of $z$, everywhere where it is defined.
+In particular it is the case that \[
+	\wp\left(-\frac{\omega}{2}\right) - \wp\left(\omega - \frac{\omega}{2}\right) = \wp\left(\frac{\omega}{2}\right) - \wp\left(\frac{\omega}{2}\right)  = 0 
+.\] 
+So $\wp(z) = \wp(z+ \omega)$. 
+We conclude that $\wp$ is $\Lambda$-periodic.
+
+Implicitly $\wp$ depends on the lattice $\Lambda$. 
+From now on we will write  $\wp_\Lambda$ to make it clear which lattice is used in the construction of $\wp$. 
+Recall from \cref{sec:modular_forms_and_complex_tori} that every lattice is isomorphic to a lattice of the form $\Lambda_\tau = \tau\Z \oplus \Z$. For these lattices we will denote $\wp_{\Lambda_\tau}$ simply as $\wp_\tau$.
+
+Recall that \emph{Eisenstein-series} $G_k$ is the function defined as \[
+	G_k(\tau) = \sum_{\substack{c, d \in \Z^2 \\ (c, d) \ne 0}} \frac{1}{(c\tau + d)^{k}}
+.\] 
+Note that this is equal to \[
+	G_k(\tau) = \sum_{\substack{\omega \in \Lambda_\tau \\ \omega \ne 0}} \frac{1}{\omega}
+.\] 
+In this spirit we extend the definition of the eisentein series as follows. For a given lattice $\Lambda$ and an even number  $k > 2$ we define \[
+	G_k(\Lambda) = \sum_{\substack{\omega \in \Lambda \\ \omega \ne 0}} \frac{1}{\omega^{k}}
+.\] 
+Note that this is a very natural extension as $G_k(\tau) = G_k(\Lambda_\tau)$.
 \section{Appendices}
 \begin{theorem}
 	The modular group $\SL_2(\Z)$ is generated by \[ 	
