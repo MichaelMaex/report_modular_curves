@@ -1,0 +1,67 @@
+%% Creator: Inkscape 1.0beta2 (2b71d25, 2019-12-03), www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'isogeny_complex_plane.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \newcommand*\fsize{\dimexpr\f@size pt\relax}%
+  \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{415.98399353bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,0.35957155)%
+    \lineheight{1}%
+    \setlength\tabcolsep{0pt}%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{isogeny_complex_plane.pdf}}%
+    \put(0.15209022,0.15821163){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\omega_2$\end{tabular}}}}%
+    \put(0.32213594,0.17402257){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\omega_1$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{isogeny_complex_plane.pdf}}%
+    \put(0.68278154,0.18558792){\color[rgb]{0,0,0}\rotatebox{-0.19975297}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\phi(\omega_2)$\end{tabular}}}}}%
+    \put(0.88149832,0.12570437){\color[rgb]{0,0,0}\rotatebox{0.35108266}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\phi(\omega_1)$\end{tabular}}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{isogeny_complex_plane.pdf}}%
+    \put(0.78947555,0.1486615){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\omega’_1$\\$\omega’_2$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=4]{isogeny_complex_plane.pdf}}%
+    \put(0.49776553,0.21298801){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\phi$\end{tabular}}}}%
+  \end{picture}%
+\endgroup%
