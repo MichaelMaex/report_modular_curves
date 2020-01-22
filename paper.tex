@@ -441,10 +441,10 @@ So \[
 .\] 
 Hence we see that $\tau$ and $\tau'$ lie in the same orbit of the action of $\SL_2\Z$. 
 Converesely $\C / \Lambda_\tau$ and $\C / \Lambda_{\gamma\cdot \tau}$ will always be isomorhic.
-Hence we conclude that there is a bijctice correspondence of isomorphism classes of complex tori and orbits of $\SL_2\Z$ acting on $\mathcal{H} $.\[
+Hence we conclude that there is a bijectice correspondence of isomorphism classes of complex tori and orbits of $\SL_2\Z$ acting on $\mathcal{H} $.\[
 \begin{tikzcd}
 	\left\{ \substack{\text{isormorphism classes} \\ \text{of complex tori}} \right\} \arrow[r, leftrightarrow] & 
-	\mathcal{H} / \SL_2\ 
+	\mathcal{H} / \SL_2\Z\ 
 \end{tikzcd}
 .\] 
 \subsection{Isogenies}
@@ -691,7 +691,7 @@ $(\wp_\Lambda(z_3), \wp'_\Lambda(z_3)$. Then so $P + Q = (\wp_\Lambda(z_3), - \w
 So the map respects the group action. 
 
 
-From now on we will often say complex elliptic curve, instead of complex torus to highlight their interpretation as elliptic curves.
+From now on we will often say complex elliptic curve, instead of complex torus to highlight their interpretation as elliptic curves. Further, we will often denote complex elliptic curves with a simple symbold (often $E$) instead of always writing them as the quotient  $\C / \Lambda$.
 
 \todo{Optionally write about maps between complex curves}.
 
@@ -707,6 +707,47 @@ Re call the subgroups $\Gamma(N), \Gamma_1(N), \Gamma_0(N)$ from \cref{sec:subgr
 Often we are interested in the modular curves corresponding to these congruence subgroups, so we denote \[
 	Y_0(N) = Y(\Gamma(N)),\; Y_1(N) = Y(\Gamma_1(N)),\; Y(N) = Y(\Gamma(N))
 .\]  
+ 
+In \cref{sec:modular_forms_and_complex_tori} we have seen that there is a bijective correspondence between equivaleny classes of complex elliptic curves and points in $Y (\SL_2\Z)$. 
+One may wonder whether there there is a similar result for modular curves $Y_0(N)$ and $Y_1(N)$.
+It turns out there is. 
+Instead of restricting the isomorphisms between the complex elliptic curves, we will actually give the elliptic curves extra information, resulting in \emph{enhanced elliptic curves}. 
+
+\subsection{Enhanced Elliptic Curves and Moduli Spaces} \label{sec:enhanced_elliptic_curves_and_moduli_spaces}
+There are three common ways of `adding information' to elliptic curves, creating \emph{enhanced elliptic curves}. Moduli Spaces are equivalence classes of enhanced elliptic curves.  
+\begin{definition} \hspace{\linewidth}
+	\begin{enumerate}
+		\item An \emph{enhanced elliptic curve for $\Gamma_0(N)$} is an pair $(E, C)$ where  $E$ is a complex elliptic curve and $C$ is an cyclic subgroup of order $N$.
+		Two of these curves $(E_1, C_1), (E_2, C_2)$ are equivalent if and only if there is an isomorphism from $E_1$ to $E_2$ that restricts to an isomorphism from $C_1$ to $C_2$.
+		The associated \emph{moduli space} is \[
+			S_0(N) = \{ \text{enhanced elliptic curves for } \Gamma_0(N)\} / \sim
+		.\] 
+	\item An \emph{enhanced elliptic curve for $\Gamma_1(N)$} is an pair $(E, Q)$ where  $E$ is a complex elliptic curve and $Q$ is point in $E$ of order $N$.
+		Two of these curves $(E_1, Q_1), (E_2, Q_2)$ are equivalent if and only if there is an isomorphism from $E_1$ to $E_2$ that maps $Q_1$ to $Q_2$.
+		The associated \emph{moduli space} is \[
+			S_1(N) = \{ \text{enhanced elliptic curves for } \Gamma_0(N)\} / \sim
+		.\] 
+	\item An \emph{enhanced elliptic curve for $\Gamma(N)$} is an tripple $(E, P, Q)$ where  $E$ is a complex elliptic curve and $P, Q$ are points in the $N$-torsion subgroup $E[N]$ such  that the weil pairing  $e_N(P, Q) = 1$.
+		Two of these curves $(E_1, P_1, Q_1), (E_2, P_2, Q_2)$ are equivalent if and only if there is an isomorphism from $E_1$ to $E_2$ that maps $P_1$ to $P_2$ and $Q_1$ to $Q_2$
+		The associated \emph{moduli space} is \[
+			S(N) = \{ \text{enhanced elliptic curves for } \Gamma_0(N)\} / \sim
+		.\] 
+	\end{enumerate}	
+\end{definition}
+\Cref{fig:enhanced_elliptic_curves} gives a visualisation of these enhanced elliptic curves.
+\begin{figure}[h]
+	\centering
+	\incfig{enhanced_elliptic_curves}
+	\caption{Enhanced elliptic curves}
+	\label{fig:enhanced_elliptic_curves}
+\end{figure}
+The following theorem gives a generalisation of the conclusion of \cref{sec:modular_curves_and_moduli_spaces}, showing that there are bijections in the modular curves $Y_0(N), Y_1(N), Y(N)$ and the moduli spaces $S_0(N), S_1(N), S(N)$, as well as providing more insight in what the moduli spaces look like. 
+\begin{theorem}
+	\hspace{\linewidth}
+	\begin{enumerate}
+		\item Every enhanced elliptic curve for $\Gamma_0(N)$ is equivalent to $(E_\tau, \left<1 / N + \Lambda_\tau \right>$ 
+	\end{enumerate}
+\end{theorem}
 
 \section{Appendices}
 \begin{theorem}
@@ -733,7 +774,7 @@ Often we are interested in the modular curves corresponding to these congruence 
 			Conclude that $f$ takes any particular value exact  $n$ times (counting multiplicity) for some fixed $n$. Show that in particular  $\wp_\Lambda$ takes any value twice.
 		\item Show that 
 			\[
-				\sum_{x \in E} \nu_x(f) x \in \Lambda
+				\sum_{x \in \C / \Lambda} \nu_x(f) x \in \Lambda
 			,\]
 			where $\nu_x(f)$ is the order of $f$ at  $x$. 
 	\end{enumerate}
@@ -762,16 +803,34 @@ Hence $f$ takes the value $w$ exactly $n$ times (counting multiplicity).
 
 The Weierstrass function $\wp_{\Lambda}$ has only one pole of order 2. Hence in this case  $n = 2$.
 \item 
-	This follows directly from the generalised argument principle applied to both \[
-		\int_{\partial P _+ t} z \frac{f(z)}{f'(x)} \mathrm d z \text{ and } \int_{\partial P + t} \frac{f(z)}{f'(z)} \mathrm d z
+	We will show this by first calculating \[
+		\frac{1}{2\pi i}\int_{\partial P + t} z \frac{f(z)}{f'(z)} \mathrm d z
+	\]
+	and showing that this value must be in $\Lambda$.
+	Like in the first part of this exercise we will split up the boundary in its edges.
+	\[	
+		\int_{\partial P+ t} z \frac{f(z)}{f'(z)} \mathrm d z = \left(\int_t^{\omega_2 + t} + \int_{\omega_2+t}^{\omega_1 + \omega_2 + t} + \int_{\omega_1 + \omega_2 + t} ^{\omega_1 + t} + \int_{\omega_1}^{t}\right) z \frac{f(z)}{f'(z)} \mathrm dz
+	.\]
+	By $\Lambda$-periodicity we know that the factor $f(z) / f'(z)$ is the same on opposing edges. Hence we can write \begin{align*}
+		\int_{\partial P + t} z \frac{f(z)}{f'(z)} \mathrm d z &= \int_t^{\omega_1 + t} (z + \omega_2 - z) \frac{f(z)}{f'(z)} \mathrm d z + \int_{t}^{\omega_2 + t} (z - z - \omega_1) \frac{f(z)}{f'(z)} \mathrm d z\\
+								       &= \omega_2 \int_t^{\omega_1 + t} 1 \; \mathrm d \ln f(z) - \omega_1 \int_t^{\omega_2 +t} 1 \; \mathrm d \ln f(z) \\
+	.\end{align*} 
+	From this we see that the integrals must be integer multiples of  $2\pi i$. 
+	Hence 
+	\[
+		\frac{1}{2\pi i } \int_{\partial P + t} z \frac{f(z)}{f'(z)} \mathrm d z \in \Lambda
 	.\] 
-	The second integral is $0$ as discussed above. 
-	The first integral adds only one pole at $z = 0$. Hence  \[
-		\int_{\partial P + t} z \frac{f(z)}{f'(z)}\mathrm d z = \sum_
-	.\]\todo{What the heck?}
+	Now note that we can write $f(z) = \sum_{x \in \{\text{poles or zero}\} }(z - x)^{\nu_x(f)}g(z)$ for some some simple function $g$. 
+	So \[
+		\frac{zf'(z)}{f(z)} = \sum_{x \in \{\text{poles or zero}\} }\nu_x(f) \frac{z}{ z - x} + z \frac{g'(z)}{g(z)}
+	.\] 
+	Note that this function has poles with residue $x \nu_x(f)$ for every $x$ which is a pole or zero of  $f$. By the residue theorem  \[
+		\frac{1}{2\pi i} \int_{\partial P + t} z \frac{f'(z)}{f(z)} \mathrm d z = \sum_{x \in \C / \Lambda} \nu_x(f)  x \in \Lambda 
+	.\]  
 \end{enumerate}
 \end{proof}
 \printbibliography
 \end{document}
+
 
 
