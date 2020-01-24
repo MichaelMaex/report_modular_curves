@@ -3,13 +3,14 @@
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 649.59 174.22" style="enable-background:new 0 0 649.59 174.22;" xml:space="preserve">
 <style type="text/css">
+	.Graphic_x0020_Style{fill-opacity:0.34;stroke:#000000;stroke-width:0.75;stroke-miterlimit:10;}
 	.st0{fill:#B3B3B3;stroke:#000000;stroke-miterlimit:10;}
 	.st1{font-family:'Helvetica';}
 	.st2{font-size:7.5695px;}
 	.st3{font-size:12px;}
 	.st4{fill:#ED1C24;}
 	.st5{fill:#0000FF;}
-	.st6{fill:#666666;stroke:#000000;stroke-width:0.75;stroke-miterlimit:10;}
+	.st6{fill-opacity:0.34;stroke:#000000;stroke-width:0.75;stroke-miterlimit:10;}
 </style>
 <polygon class="st0" points="174.49,123.98 40.03,123.98 71.82,45.86 206.28,45.86 "/>
 <g>
@@ -64,7 +65,7 @@
 <text transform="matrix(0.9816 0 0 1 60.5975 40.4302)" class="st1 st2">$\omega_1$</text>
 <text transform="matrix(1 0 0 1 61.8361 142.5628)" class="st1 st2">$\frac{\omega_2}{N}$</text>
 <text transform="matrix(1 0 0 1 14.8673 109.9976)" class="st1 st2">$\frac{\omega_1}{N}$</text>
-<polygon class="st0" points="376.94,123.89 242.48,123.89 274.27,45.77 408.73,45.77 "/>
+<polygon class="Graphic_x0020_Style" points="376.94,123.89 242.48,123.89 274.27,45.77 408.73,45.77 "/>
 <g>
 	<circle cx="242.48" cy="123.89" r="1.89"/>
 	<circle cx="269.41" cy="123.89" r="1.89"/>

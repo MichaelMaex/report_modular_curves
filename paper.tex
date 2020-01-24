@@ -5,9 +5,10 @@
 \usepackage{textcomp}
 %\usepackage[dutch]{babel}
 \usepackage{amsmath, amssymb, amsthm}
-%\usepackage{geometry}
+\usepackage{geometry}
 \usepackage{tikz-cd}
 \usepackage{mdframed}
+\usepackage{color}
 \usepackage{microtype}
 \usepackage{hyperref}
 \usepackage{cleveref}
@@ -691,7 +692,7 @@ $(\wp_\Lambda(z_3), \wp'_\Lambda(z_3)$. Then so $P + Q = (\wp_\Lambda(z_3), - \w
 So the map respects the group action. 
 
 
-From now on we will often say complex elliptic curve, instead of complex torus to highlight their interpretation as elliptic curves. Further, we will often denote complex elliptic curves with a simple symbold (often $E$) instead of always writing them as the quotient  $\C / \Lambda$.
+From now on we will often say complex elliptic curve, instead of complex torus to highlight their interpretation as elliptic curves. Further, we will often denote complex elliptic curves with a simple symbold (often $E$) instead of always writing them as the quotient  $\C / \Lambda$. We write $E_\tau  = \C / \Lambda_\tau$.
 
 \todo{Optionally write about maps between complex curves}.
 
@@ -703,7 +704,7 @@ The definition of these objects is very simple, but like any object in this pape
 		Y(\Gamma) = \mathcal{H} / \sim = \{\Gamma \tau \;|\; \tau \in \mathcal{H} \} 
 	.\] 
 \end{definition}
-Re call the subgroups $\Gamma(N), \Gamma_1(N), \Gamma_0(N)$ from \cref{sec:subgroups_of_the_modular_group}. 
+Recall the subgroups $\Gamma(N), \Gamma_1(N), \Gamma_0(N)$ from \cref{sec:subgroups_of_the_modular_group}. 
 Often we are interested in the modular curves corresponding to these congruence subgroups, so we denote \[
 	Y_0(N) = Y(\Gamma(N)),\; Y_1(N) = Y(\Gamma_1(N)),\; Y(N) = Y(\Gamma(N))
 .\]  
@@ -734,20 +735,172 @@ There are three common ways of `adding information' to elliptic curves, creating
 		.\] 
 	\end{enumerate}	
 \end{definition}
-\Cref{fig:enhanced_elliptic_curves} gives a visualisation of these enhanced elliptic curves.
 \begin{figure}[h]
 	\centering
 	\incfig{enhanced_elliptic_curves}
 	\caption{Enhanced elliptic curves}
 	\label{fig:enhanced_elliptic_curves}
 \end{figure}
+\Cref{fig:enhanced_elliptic_curves} gives a visualisation of these enhanced elliptic curves.
 The following theorem gives a generalisation of the conclusion of \cref{sec:modular_curves_and_moduli_spaces}, showing that there are bijections in the modular curves $Y_0(N), Y_1(N), Y(N)$ and the moduli spaces $S_0(N), S_1(N), S(N)$, as well as providing more insight in what the moduli spaces look like. 
 \begin{theorem}
 	\hspace{\linewidth}
 	\begin{enumerate}
-		\item Every enhanced elliptic curve for $\Gamma_0(N)$ is equivalent to $(E_\tau, \left<1 / N + \Lambda_\tau \right>$ 
+		\item Every enhanced elliptic curve for $\Gamma_0(N)$ is equivalent to curve of the form $(E_\tau, \left<1 / N + \Lambda_\tau \right>)$ for some $\tau \in \mathcal{H} $. 
+			Two curves in this form $(E_\tau, \left<1 / N + \Lambda_\tau \right>)$ and $(E_\sigma, \left<1 / N + \Lambda_\sigma \right>)$ are equivalent if and only if $\Gamma_0\left( N \right) \tau = \Gamma_0(N) \sigma$. There is a bijective correspondence
+			\begin{align*}
+				S_0(N) &\longrightarrow Y_0(N) \\
+				\left[\frac{\C}{\Lambda_\tau}, \left<\frac{1}{N} + \Lambda_\tau \right>\right] &\longmapsto \Gamma_0(\N)\tau
+			.\end{align*}
+	
+		\item Every enhanced elliptic curve for $\Gamma_1(N)$ is equivalent to curve of the form $(E_\tau, 1 / N + \Lambda_\tau )$ for some $\tau \in \mathcal{H} $. 
+			Two curves in this form $(E_\tau, 1 / N + \Lambda_\tau )$ and $(E_\sigma, 1 / N + \Lambda_\sigma)$ are equivalent if and only if $\Gamma_1\left( N \right) \tau = \Gamma_1(N) \sigma$. There is a bijective correspondence
+			\begin{align*}
+				S_1(N) &\longrightarrow Y_1(N) \\
+				\left[\frac{\C}{\Lambda_\tau}, \frac{1}{N} + \Lambda_\tau \right] &\longmapsto \Gamma_1(\N)\tau
+			.\end{align*}
+		\item Every enhanced elliptic curve for $\Gamma(N)$ is equivalent to curve of the form $(E_\tau, \tau / N + \Lambda_\tau, 1 / N + \Lambda_\tau )$ for some $\tau \in \mathcal{H} $. 
+			Two curves in this form $(E_\tau, \tau / N + \Lambda_\tau,  1 / N + \Lambda_\tau )$ and $(E_\sigma, \sigma / N + \Lambda_\sigma,1 / N + \Lambda_\sigma)$ are equivalent if and only if $\Gamma\left( N \right) \tau = \Gamma(N) \sigma$. There is a bijective correspondence
+			\begin{align*}
+				S(N) &\longrightarrow Y(N) \\
+				\left[\frac{\C}{\Lambda_\tau}, \frac{\tau}{N} + \Lambda_\tau, \frac{1}{N} + \Lambda_\tau \right] &\longmapsto \Gamma_1(\N)\tau
+			.\end{align*}
 	\end{enumerate}
 \end{theorem}
+\begin{proof}
+	\begin{enumerate}
+		\item Let $\left( C / \Lambda, \left< c \omega_1 / N  + d \omega_2 / N  + \Lambda\right> \right) $, where $\Lambda = \omega_1 \Z \oplus \omega_2 \Z$ be any enhanced complex elliptic curve for $\Gamma_0(N)$.
+			As $c \omega_1 / N + d \omega_2 /N$ generates a cyclic group of order $N$ we know that $\gcd(c, d, N) = 1$. 
+			So there exists an $x \in \Z$ such that $\gcd(c, d + xN) = 1$. 
+			Note that \[
+				c \frac{\omega_1}{N}  + d \frac{\omega_2}{N}  + \Lambda =  c \frac{\omega_1}{N} + (d + xN) \frac{\omega_2}{N}+ \Lambda
+		.\]
+		We may as well have assumed from the start that $c, d$ are coprime.
+		So there are $a, b \in \Z $ such that $ac - bd = 1$. 
+		This means that the matrix  $\begin{pmatrix} a & b \\ c& d \end{pmatrix}  \in \SL_2\Z$ and hence invertible. 
+		Let \[
+		\begin{pmatrix} \omega_1' \\ \omega_2' \end{pmatrix}  = 
+		\begin{pmatrix} a & b \\ c & d \end{pmatrix} 
+		\begin{pmatrix} \omega_1 \\ \omega_2 \end{pmatrix} 
+		.\] 
+		As this is an invertible matrix it follows that $\Lambda = \omega_1' \Z \oplus \omega_2' \Z$. 
+	In this new basis we see that the enhanced elliptic curve looks like $(\C / \Lambda, \left< 1 / N \omega_2\right>)$.
+	Recall from \cref{sec:modular_forms_and_complex_tori} that  $\phi: z  + \Lambda \mapsto  \frac{1}{\omega_2'} z + \Lambda_\tau$ with $\tau = \frac{\omega_1}{\omega_2}$. 
+	This maps  $\left<\omega_2 / N \right>$ to $\left<1 / N + \Lambda_\tau \right>$.
+	Hence  \[
+		\left( \frac{\C}{\Lambda}, \left<c \frac{\omega_1}{N} + d \frac{\omega_2}{N} \right> \right) 	\simeq  
+		\left( E_\tau, \left<\frac{1}{N} + \Lambda_\tau \right> \right) 
+	.\] 
+
+
+	
+	We will know prove that \[
+		\left( E_\tau , \left<\frac{1}{N} + \Lambda_\tau \right> \right) \simeq 
+		\left( E_\sigma, \left<\frac{1}{N} + \Lambda_\sigma \right> \right) 
+	\]
+	if and only if $\tau = \gamma \cdot \sigma$ for some $\gamma \in \Gamma_0(N)$.
+	Recall that $\Gamma_0(N)$ is the set of all matrices $\begin{pmatrix} a & b \\ c & d \end{pmatrix} \in \SL_2\Z$ where $c$ is divisible by $N$. 
+	\ltr Suppose that $\phi: z \mapsto m z$ is such an isomorphism. Then $m \Lambda_\tau = \Lambda_\sigma$. Hence \[
+	\begin{pmatrix} m \tau \\ m \end{pmatrix}  = 
+	\begin{pmatrix} a & b \\ c & d \end{pmatrix} \begin{pmatrix} \sigma \\ 1 \end{pmatrix} 
+	,\] 
+	for some $\gamma = \begin{pmatrix} a & b \\ c & d \end{pmatrix}  \in \SL_2\Z$. 
+	We see that $\tau = \gamma \sigma$. If we can show that  $N \mathbin{\mid} c$ we are done.
+	We know that $m = c \sigma + d$. 
+	We know that $\phi$ maps $1 / N + \Lambda_\tau$ to a generator of $\left<1 / N + \Lambda_\sigma \right>$. 
+	Putting this together yields \begin{align*}
+		m\left(\frac{1}{N} + \Lambda_\tau\right) &= (c \tau + d) \frac{1}{N} + \Lambda_\sigma \\ 
+		&= c \frac{\sigma}{N} + d \frac{1}{N} + \Lambda_\sigma \\
+	\end{align*}
+	So we see that $N \mathbin{|} c$. 
+	\rtl Suppose that $\tau = \gamma \cdot \sigma$ for some \[
+		\gamma = \begin{pmatrix} a & b \\ c & d  \end{pmatrix} \in \Gamma_0(N)
+	.\] 
+	Define  $m = c \sigma + d$. Reversing the reasoning for the other implication yields that  $\phi: z\mapsto  m z$ is an isomorphism. 
+
+	\item The first part is completely analogous to the case for $\Gamma_0.$ 
+	We will know prove that \[
+		\left( E_\tau , \frac{1}{N} + \Lambda_\tau \right) \simeq 
+		\left( E_\sigma, \frac{1}{N} + \Lambda_\sigma \right) 
+	\]
+	if and only if $\tau = \gamma \cdot \sigma$ for some $\gamma \in \Gamma_1(N)$.
+	Recall that $\Gamma_0(N)$ is the set of all matrices $\begin{pmatrix} a & b \\ c & d \end{pmatrix} \in \SL_2\Z$ where $c \equiv 0, a \equiv d \equiv 1 \mod N$. 
+
+	\ltr Suppose that $\phi: z\mapsto  m z$ is such an isomorphism is such an isomorphism.
+	Then $m \Lambda_\tau = \Lambda_\sigma$ for some $m$. So \[
+	\begin{pmatrix} m \tau \\ m \end{pmatrix} = 
+	\gamma \cdot  \begin{pmatrix} \sigma \\ 1 \end{pmatrix} , 
+	\text{ for some } \gamma = \begin{pmatrix} a & b \\ c & d \end{pmatrix} \in \SL_2 \Z
+	.\] 
+	Then $m = c \sigma + d$. So 
+	 \begin{align*}
+		 m \left( \frac{1}{N} + \Lambda_\tau \right)  &= c \frac{\sigma}{N} + d \frac{1}{N} + \Lambda_\sigma \\
+		 &=  \frac{1}{N} + \Lambda_\sigma
+	.\end{align*}
+	From this we see that $c \equiv 0, d \equiv 1 \mod N$. Recall that  $ad - bc = 1$. 
+	So  $ad - bc \equiv a\cdot 1 + b\cdot 0 \equiv a \equiv 1$. So $\gamma \in \Gamma_1(N)$.
+	\rtl Suppose that $\tau = \gamma \cdot \sigma$ for some \[
+		\gamma = \begin{pmatrix} a & b \\ c & d  \end{pmatrix} \in \Gamma_1(N)
+	.\] 	
+	Define $m = c \sigma + d$. Reversing the argument for the other implication yields that $\phi:z \mapsto m z$ is an isomorphism.		
+
+	\item Let 
+		\[\left( C / \Lambda, a \frac{\omega_1}{N} + b \frac{\omega_2}{N} + \Lambda,  c \frac{\omega_1}{N}  + d \frac{\omega_2}{N}  + \Lambda \right) ,\]
+	where $\Lambda = \omega_1 \Z \oplus \omega_2 \Z$ be any enhanced complex elliptic curve for $\Gamma(N)$.
+	As the Weil pairing of the two points is 1 we know that $ad - bc \equiv 1 \mod N $. 
+	It can be shown that we can find $a', b', c', d' \equiv a, b, c, d \mod N$ such that  $a'd' - b'c' = 1$. 
+	We will assume that this has been the case from the beginning. 
+	This means that the matrix  $\begin{pmatrix} a & b \\ c& d \end{pmatrix}  \in \SL_2\Z$ and hence invertible. 
+	Let \[
+		\begin{pmatrix} \omega_1' \\ \omega_2' \end{pmatrix}  = 
+		\begin{pmatrix} a & b \\ c & d \end{pmatrix} 
+		\begin{pmatrix} \omega_1 \\ \omega_2 \end{pmatrix} 
+	.\] 
+	As this is an invertible matrix it follows that $\Lambda = \omega_1' \Z \oplus \omega_2' \Z$. 
+	In this new basis we see that the enhanced elliptic curve looks like $(\C / \Lambda, 1 / N \omega_1,  1 / N \omega_2)$.
+	Recall from \cref{sec:modular_forms_and_complex_tori} that  $\phi: z  + \Lambda \mapsto  \frac{1}{\omega_2'} z + \Lambda_\tau$ with $\tau = \frac{\omega_1}{\omega_2}$. 
+	This maps  $\left<\omega_2 / N \right>$ to $\left<1 / N + \Lambda_\tau \right>$.
+	Hence  \[
+		\left( C / \Lambda, a \frac{\omega_1}{N} + b \frac{\omega_2}{N} + \Lambda,  c \frac{\omega_1}{N}  + d \frac{\omega_2}{N}  + \Lambda \right)
+		\simeq
+		\left( E_\tau, \frac{\tau}{N} + \Lambda_\tau, \frac{1}{N} + \Lambda_\tau \right)
+	.\] 
+
+	We will know prove that \[
+		\left( E_\tau , \frac{\tau}{N} + \Lambda_\tau, \frac{1}{N} + \Lambda_\tau \right) \simeq 
+		\left( E_\sigma, \frac{\sigma}{N} + \Lambda_ \sigma, \frac{1}{N} + \Lambda_\sigma \right) 
+	\]
+	if and only if $\tau = \gamma \cdot \sigma$ for some $\gamma \in \Gamma(N)$.
+	Recall that $\Gamma_0(N)$ is the set of all matrices $\begin{pmatrix} a & b \\ c & d \end{pmatrix} \in \SL_2\Z$ where $c \equiv d \equiv 0, a \equiv d \equiv 1 \mod N$. 
+
+	\ltr Suppose that $\phi: z\mapsto  m z$ is such an isomorphism is such an isomorphism.
+	Then $m \Lambda_\tau = \Lambda_\sigma$ for some $m$. So \[
+	\begin{pmatrix} m \tau \\ m \end{pmatrix} = 
+	\gamma \cdot  \begin{pmatrix} \sigma \\ 1 \end{pmatrix} , 
+	\text{ for some } \gamma = \begin{pmatrix} a & b \\ c & d \end{pmatrix} \in \SL_2 \Z
+	.\] 
+	Then $m = c \sigma + d$. So 
+	 \begin{align*}
+		 m \left( \frac{1}{N} + \Lambda_\tau \right)  &= c \frac{\sigma}{N} + d \frac{1}{N} + \Lambda_\sigma \\
+		 &=  \frac{1}{N} + \Lambda_\sigma
+	.\end{align*}
+	From this we see that $c \equiv 0, d \equiv 1 \mod N$. 
+	\begin{align*}
+		m(\frac{\tau}{N} + \Lambda_\tau) &= \frac{m\tau}{N} + \Lambda_\sigma \\
+		&= a \frac{\sigma}{N} + b \frac{1}{N} + \Lambda_\sigma \\
+		&= \frac{\sigma}{N} \\
+	.\end{align*}
+	So $a \equiv 1, b \equiv 0 \mod N$
+	It follows that $\gamma  \in \Gamma(N)$. 
+
+	\rtl Suppose that $\tau = \gamma \cdot \sigma$ for some \[
+		\gamma = \begin{pmatrix} a & b \\ c & d  \end{pmatrix} \in \Gamma_1(N)
+	.\] 	
+	Define $m = c \sigma + d$. Reversing the argument for the other implication yields that $\phi:z \mapsto m z$ is an isomorphism.
+	\end{enumerate}
+\end{proof}
+
+\subsection{Reintepreting Modular Forms} \label{sec:reintepreting_modular_forms}
 
 \section{Appendices}
 \begin{theorem}
@@ -804,21 +957,21 @@ Hence $f$ takes the value $w$ exactly $n$ times (counting multiplicity).
 The Weierstrass function $\wp_{\Lambda}$ has only one pole of order 2. Hence in this case  $n = 2$.
 \item 
 	We will show this by first calculating \[
-		\frac{1}{2\pi i}\int_{\partial P + t} z \frac{f(z)}{f'(z)} \mathrm d z
+		\frac{1}{2\pi i}\int_{\partial P + t} z \frac{f(z)'}{f(z)} \mathrm d z
 	\]
 	and showing that this value must be in $\Lambda$.
 	Like in the first part of this exercise we will split up the boundary in its edges.
 	\[	
-		\int_{\partial P+ t} z \frac{f(z)}{f'(z)} \mathrm d z = \left(\int_t^{\omega_2 + t} + \int_{\omega_2+t}^{\omega_1 + \omega_2 + t} + \int_{\omega_1 + \omega_2 + t} ^{\omega_1 + t} + \int_{\omega_1}^{t}\right) z \frac{f(z)}{f'(z)} \mathrm dz
+		\int_{\partial P+ t} z \frac{f'(z)}{f(z)} \mathrm d z = \left(\int_t^{\omega_2 + t} + \int_{\omega_2+t}^{\omega_1 + \omega_2 + t} + \int_{\omega_1 + \omega_2 + t} ^{\omega_1 + t} + \int_{\omega_1}^{t}\right) z \frac{f'(z)}{f(z)} \mathrm dz
 	.\]
-	By $\Lambda$-periodicity we know that the factor $f(z) / f'(z)$ is the same on opposing edges. Hence we can write \begin{align*}
-		\int_{\partial P + t} z \frac{f(z)}{f'(z)} \mathrm d z &= \int_t^{\omega_1 + t} (z + \omega_2 - z) \frac{f(z)}{f'(z)} \mathrm d z + \int_{t}^{\omega_2 + t} (z - z - \omega_1) \frac{f(z)}{f'(z)} \mathrm d z\\
+	By $\Lambda$-periodicity we know that the factor $f'(z) / f(z)$ is the same on opposing edges. Hence we can write \begin{align*}
+		\int_{\partial P + t} z \frac{f'(z)}{f(z)} \mathrm d z &= \int_t^{\omega_1 + t} (z + \omega_2 - z) \frac{f'(z)}{f(z)} \mathrm d z + \int_{t}^{\omega_2 + t} (z - z - \omega_1) \frac{f'(z)}{f(z)} \mathrm d z\\
 								       &= \omega_2 \int_t^{\omega_1 + t} 1 \; \mathrm d \ln f(z) - \omega_1 \int_t^{\omega_2 +t} 1 \; \mathrm d \ln f(z) \\
 	.\end{align*} 
 	From this we see that the integrals must be integer multiples of  $2\pi i$. 
 	Hence 
 	\[
-		\frac{1}{2\pi i } \int_{\partial P + t} z \frac{f(z)}{f'(z)} \mathrm d z \in \Lambda
+		\frac{1}{2\pi i } \int_{\partial P + t} z \frac{f'(z)}{f(z)} \mathrm d z \in \Lambda
 	.\] 
 	Now note that we can write $f(z) = \sum_{x \in \{\text{poles or zero}\} }(z - x)^{\nu_x(f)}g(z)$ for some some simple function $g$. 
 	So \[
