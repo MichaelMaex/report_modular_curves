@@ -38,7 +38,7 @@
   \newcommand*\fsize{\dimexpr\f@size pt\relax}%
   \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
   \ifx\svgwidth\undefined%
-    \setlength{\unitlength}{415.98399353bp}%
+    \setlength{\unitlength}{311.98500824bp}%
     \ifx\svgscale\undefined%
       \relax%
     \else%
@@ -50,18 +50,19 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,0.35957155)%
+  \begin{picture}(1,0.35958459)%
     \lineheight{1}%
     \setlength\tabcolsep{0pt}%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{isogeny_complex_plane.pdf}}%
-    \put(0.15209022,0.15821163){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\omega_2$\end{tabular}}}}%
-    \put(0.32213594,0.17402257){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\omega_1$\end{tabular}}}}%
+    \put(0.1520912,0.15822347){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\omega_2$\end{tabular}}}}%
+    \put(0.3221388,0.17403457){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\omega_1$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=2]{isogeny_complex_plane.pdf}}%
-    \put(0.68278154,0.18558792){\color[rgb]{0,0,0}\rotatebox{-0.19975297}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\phi(\omega_2)$\end{tabular}}}}}%
-    \put(0.88149832,0.12570437){\color[rgb]{0,0,0}\rotatebox{0.35108266}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\phi(\omega_1)$\end{tabular}}}}}%
+    \put(0.68273761,0.18576614){\rotatebox{-0.19996146}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\phi(\omega_2)$\end{tabular}}}}}%
+    \put(0.88149524,0.12577768){\rotatebox{0.35179167}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\phi(\omega_1)$\end{tabular}}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=3]{isogeny_complex_plane.pdf}}%
-    \put(0.78947555,0.1486615){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\omega’_1$\\$\omega’_2$\end{tabular}}}}%
+    \put(0.78948289,0.14867373){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\omega’_1$\end{tabular}}}}%
+    \put(0.65172771,0.13463532){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\omega’_2$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=4]{isogeny_complex_plane.pdf}}%
-    \put(0.49776553,0.21298801){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\phi$\end{tabular}}}}%
+    \put(0.49777055,0.21300062){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\phi$\end{tabular}}}}%
   \end{picture}%
 \endgroup%
