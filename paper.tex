@@ -1,4 +1,4 @@
-\documentclass[a4paper]{article}
+\documentclass[titlepage,a4paper]{article}
 
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
@@ -97,24 +97,29 @@
 \date{\today}
 \title{Modular Curves}
 \begin{document}
-
-\maketitle
-\pagebreak
-
+\pagenumbering{Alph}
+    \maketitle
+%\clearpage % end title page
+\begingroup
+  \pagestyle{empty}
+  \null
+  \newpage
+\endgroup
+\pagenumbering{arabic}
 \tableofcontents
-
 \pagebreak
 
 \section{Introduction}
 
-This is the report of the journey of a student learning about elliptic curves. 
 This report should be thought of as my notes while working my way through the first chapters of \emph{A First Course in Modular Forms} by Fred Diamond and Jerry Shurman\cite{diamondFirstCourseModular2005a}. 
 This book is my main reference. 
-Most of this report is paraphrasing this book, but I've added some details where I thought the book was lacking. 
-I've also added some visual intuitions I developed to aid my understanding of this material. I hope potential readers will find these useful as well. 
+Most of this report is citing theorems and definitions from this book and adapting the proofs to my own style. In doing so I've added some details where I thought the book was lacking and found slight variations of proofs that in my opinion are easier to understand.
+I've also added some visual intuitions, which I developed to aid my understanding of this material, particularly in the sections about complex tori. 
+I hope that any readers will find these useful as well. 
 
-Unfortunately I did not get far enough into the subject to start studying more advanced subjects, due to the large amount of concepts, and relations between these concepts, that need to be understood first (the modular group, congruence subgroups, modular forms, complex tori, elliptic curves, modular curves, moduli spaces, \ldots). 
-However this report should cover most if not all the prerequisites for understanding the more advanced topics.
+Due to the large amount of concepts, and relations between these concepts, that need to be understood first (the modular group, congruence subgroups, modular forms, complex tori, elliptic curves, modular curves, moduli spaces, \ldots), I unfortunately did not get far enough into the subject to study the more advanced topics. 
+However this report should cover most if not all the prerequisites for understanding the more advanced topics and I still had a lot of fun learning about the subject. 
+The deadline for this report will definitely not be the end of learning about modular curves and related objects for me.
 
 Modular forms, elliptic curves and modular forms are three seemingly unrelated concepts that have surprising connections. 
 The goal of this report is to understand these objects and how they are related. 
@@ -151,12 +156,12 @@ Note that is is sufficient to check this for the action of the generators, which
 \]
 for which it is obvious.
 Further, we easily see that $I_2 \cdot \tau = \tau$. 
-It also holds that for $\gamma = \begin{pmatrix} a & b \\ c & d \end{pmatrix} $ and $\beta = \begin{pmatrix} f & g \\ h & i \end{pmatrix} $: 
+It also holds that for $\gamma = \begin{pmatrix} a & b \\ c & d \end{pmatrix} $ and $\beta = \begin{pmatrix} f & g \\ h & j \end{pmatrix} $: 
 \begin{align*}
-	\gamma \left( \beta \cdot  \tau\right) &=  \gamma\cdot \frac{f\tau + g}{h \tau + i} \\
-					       &= \frac{a\left( \frac{f \tau + g}{h\tau + i} \right) + b}{c \left( \frac{f \tau + g}{h \tau + i} \right) + d} \\	
-					       &= \frac{(af + bh)\tau + ga + bi}{(cf + dh) \tau + cg + di} \\
-					       &= \begin{pmatrix} af + bh & ag + bi \\ cf + dh & cg + di \end{pmatrix} \cdot \tau \\
+	\gamma \left( \beta \cdot  \tau\right) &=  \gamma\cdot \frac{f\tau + g}{h \tau + j} \\
+					       &= \frac{a\left( \frac{f \tau + g}{h\tau + j} \right) + b}{c \left( \frac{f \tau + g}{h \tau + j} \right) + d} \\	
+					       &= \frac{(af + bh)\tau + ga + bj}{(cf + dh) \tau + cg + dj} \\
+					       &= \begin{pmatrix} af + bh & ag + bj \\ cf + dh & cg + dj \end{pmatrix} \cdot \tau \\
 					       &= (\gamma \beta)\cdot \tau 
 .\end{align*}
 
@@ -169,7 +174,6 @@ To define these we first have to define the so called \emph{principal congruence
 		\Gamma(N) = \bigset{\begin{pmatrix} a & b \\ c & d \end{pmatrix} \in \SL_2(\Z)}{\begin{pmatrix} a & b \\ c & d \end{pmatrix}  \equiv \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}  (\mathrm{mod}\; N)}
 	.\] 
 \end{definition}
-
 Further we define two subgroups
 \begin{definition}
 	For every $N \in \N$ we define $\Gamma_0$ and $\Gamma_1$ to be 
@@ -178,6 +182,7 @@ Further we define two subgroups
 		\Gamma_1(N) &= \bigset{\begin{pmatrix} a & b \\ c & d \end{pmatrix} \in \SL_2(\Z)}{\begin{pmatrix} a & b \\ c & d \end{pmatrix}  \equiv \begin{pmatrix} 1 & * \\ 0 & 1 \end{pmatrix}  (\mathrm{mod}\; N)}
 	.\end{align*}
 \end{definition} 
+One can easily verify that these three subsets do in fact define subgroups of $\SL_2\Z$. 
 Note that 
 \[
 	\Gamma(N) \subset \Gamma_1(N) \subset \Gamma_0(N) \subset  \SL_2\Z
@@ -190,18 +195,29 @@ We will now give the general definition of \emph{congruence subgroups}.
 \end{definition}
 \subsection{Defining Modular Forms}\label{sec:defining_modular_forms}
 
-Some meromorphic functions $f:\mathcal{H}  \to \hat{\C}$ are in some sense invariant under the action of the modular group (or one of its subgroups). 
+Some meromorphic functions $f:\mathcal{H}  \to \C \cup \{\infty\} $ are in some sense invariant under the action of the modular group (or one of its subgroups). 
 These functions are the \emph{modular forms}.
 
 \begin{definition}
 	Let $k$ be an integer. 
 	A meromorphic function $f: \mathcal{H}  \to \C$ is \emph{weakly modular of weight $k$ } if \begin{equation} \label{eq:weakly_modular}
-		f(\gamma(\tau)) = (ct + d)^{k}f(\tau)
+		f(\gamma(\tau)) = (c\tau + d)^{k}f(\tau)
 	,\end{equation}
 	for all $\gamma = \begin{pmatrix} a & b \\ c & d \end{pmatrix}  \in \SL_2(\Z)$ and $\tau \in \mathcal{H} $. 
 \end{definition}
-
-It's clearly enough so check \eqref{eq:weakly_modular} only for the generators of $\SL_2\Z$. I.e. check that
+	\Cref{eq:weakly_modular} behaves well with the multiplication in $\SL_2\Z$ in the sense that if \[
+		\gamma = \begin{pmatrix} a & b \\ c & d \end{pmatrix} \text{ and }\beta = \begin{pmatrix} e & f \\ g & j \end{pmatrix} \text{ such that }
+		\gamma \cdot  \beta = \begin{pmatrix} af + bh & ag + bj \\ cf + dh & cg + dj\end{pmatrix} 
+	,\]
+	it holds that 
+	\[
+		(c \beta\cdot \tau + d)\cdot (g \tau + j) = ((cf + dh) \tau + (cg + dj))
+	.\] 
+	So \[
+		f(\gamma (\beta \tau)) = f ((\gamma \cdot  \beta)\tau)
+	\] 
+	is automatically satisfied.
+In light of this it is clearly enough to check \eqref{eq:weakly_modular} only for the generators of $\SL_2\Z$. I.e. check that
 \begin{equation}\label{eq:sufficient_weakly_modular}
 	f(\tau + 1) = f(\tau) \text{ and } f\left(-\frac{1}{\tau}\right)  = \tau^{k}f(\tau)
 .\end{equation} 
@@ -239,15 +255,15 @@ We are now ready to give the definition of a modular form.
 		\item $f$ is weakly modular of weight $k$ with respect to $\Gamma$, 
 		\item $f[\gamma]_k$ is holomorphic at $\infty$ for every $\gamma \in \SL_2\Z$. 
 	\end{enumerate}
-	We denote the set of modular froms of weight $k$ with respect to $\Gamma$ as $\mathcal{M} _k(\SL_2\Z)$. 
+	We denote the set of modular forms of weight $k$ with respect to $\Gamma$ as $\mathcal{M} _k(\SL_2\Z)$. 
 	
 	If $\Gamma = \SL_2\Z$ we say simply that $f$ is a modular form of weight $k$. 
 \end{definition}
-The stament `holomorhic at $\infty$' deserves some explanation. 
+The statement `holomorphic at $\infty$' deserves some explanation. 
 One can show that any congruence subgroup contains a matrix of the form $\begin{pmatrix} 1 & k \\ 0 & 1 \end{pmatrix} $ ($\Gamma(N)$ contains  $\begin{pmatrix} 1 & n \\ 0 & 1 \end{pmatrix} $). 
 If we choose this $k$ to be minimal we see that $f(\tau) = f(\tau + k)$. 
 So $f$ is $k\Z$-periodic. It would be desirable if $f$ allowed a Fourrier expansion.  
-There are many equivalent ways of defining `holomorphic at $\infty$', but for our purposes we will take this to mean that $f$ allows a Fourier expansion \footnote{The real picture behing holomopich at $\infty$ is that, due to $f$ being $k\Z$-periodic, $H$ can be 'rolled up' on the unit disk, where $\infty$ gets mapped to the center. In this picture  $f$ being holomorphic at $\infty$ means that  $f$ allows an extension which holomorphic on the center of the disk.}, i.e.\ \[
+There are many equivalent ways of defining `holomorphic at $\infty$', but for our purposes we will take this to mean that $f$ allows a Fourier expansion\footnote{The real picture behind holomorphic at $\infty$ is that, due to $f$ being $k\Z$-periodic, $H$ can be `rolled up' on the unit disk, where $\infty$ gets mapped to 0. In this picture  $f$ being holomorphic at $\infty$ means that  $f$ allows an extension which holomorphic on the centre of the disk.}, i.e.\ \[
 	f(\tau) = \sum_{n=0}^{\infty} a_n e^{n 2\pi i \tau / k}
 ,\]
 for some $a_n \in \C$.
@@ -276,7 +292,7 @@ It is the case that the last condition of \cref{def:modular_form} is what makes 
 	\end{enumerate}
 \end{proof}
 
-Finally we introduce a special type of modular called a cusp. The names comes from connection to modular curves that we will discuss later.
+Finally we introduce a special type of modular form called a cusp. The names comes from connection to modular curves that I unfortunately did not get to study yet.
 \begin{definition}\label{def:cusp}
 	A \emph{cusp form} is a modular form $f$ (with respect to a congruence subgroup  $\Gamma$) such that for every  $\alpha \in \SL_2\Z$  the leading coefficient in its Fourier expansion is 0. 
 	 The $\C$-vector space of cusp forms of weight $k$ is denoted $\mathcal{S} _k(\Gamma)$.
@@ -341,7 +357,7 @@ The main idea of this section is to construct tori by considering $\C$ as an add
 		\C / \Lambda = \bigset{z + \Lambda}{z \in \C} 
 	.\] 
 \end{definition}
-This object is called as torus because of a geometric intuition. 
+This object is called a torus because topologically it is a torus. 
 If one considers the parallelogram spanned by $\vec{\omega_1}, \vec{\omega_2}$ we see that the opposing edges are `glued' together. 
 So topologically this space is homeomorphic to the torus (see \cref{fig:complex_torus}). 
 
@@ -353,7 +369,7 @@ So topologically this space is homeomorphic to the torus (see \cref{fig:complex_
 
 The modular group tells us when two two lattices are equal. 
 \begin{lemma}\label{lem:equality_of_lattices}
-	Let $\Lambda = \omega_1\Z \oplus \omega_2\Z$ and $\Lambda' = \omega_1'\Z \oplus \omega_2\Z$ be two lattices. 
+	Let $\Lambda = \omega_1\Z \oplus \omega_2\Z$ and $\Lambda' = \omega_1'\Z \oplus \omega_2'\Z$ be two lattices. 
 	Then $\Lambda = \Lambda'$ if and only if there exists an $\begin{pmatrix} a & b \\ c& d \end{pmatrix} \in \SL_2\Z$ such that \[
 	\begin{pmatrix} \omega_1' \\ \omega_2' \end{pmatrix}  = 
 	\begin{pmatrix} a & b \\ c& d \end{pmatrix} 
@@ -362,7 +378,8 @@ The modular group tells us when two two lattices are equal.
 \end{lemma}
 \begin{proof}[Proof. (exercise 1.3.1)]
 	\ltr
-	We know that $\omega_1' \in \Lambda$, there there are $a, b \in \Z$ such that $\omega_1' = a \omega_1 + b \omega_2$. Similarly there are $c, d \in \Z$ such that $\omega_2' = c \omega_1 + d \omega_2$. 
+	We know that $\omega_1' \in \Lambda$ there there are $a, b \in \Z$ such that $\omega_1' = a \omega_1 + b \omega_2$. 
+	Similarly there are $c, d \in \Z$ such that $\omega_2' = c \omega_1 + d \omega_2$. 
 	So  \[
 	\begin{pmatrix} \omega_1' \\ \omega_2' \end{pmatrix}  = 
 	\begin{pmatrix} a & b \\ c& d \end{pmatrix} 
@@ -393,7 +410,7 @@ The modular group tells us when two two lattices are equal.
 
 A complex torus is a Riemann surface. This a not a report about Riemann surfaces, but to not completely shove everything under the rug I will quickly explain what a Riemann Surface is.
 Recall that that smooth manifolds are spaces that are locally homeomorphic to $\R^{n}$ and equipped with a smoothly compatible atlas. 
-In the same spirit Riemann surfaces are objects that look locally like $\C$ and equipped with an atlas that is holomorphicly compatible.
+In the same spirit Riemann surfaces are objects that look locally like $\C$ and equipped with an atlas that is holomorphically compatible.
 The complex tori are Riemann surfaces. 
 
 I will mention one theorem about Riemann surfaces without proof. 
@@ -406,14 +423,14 @@ I will mention one theorem about Riemann surfaces without proof.
 In our study of complex tori, holomorphic maps between them are of great importance. 
 In light of this we want to know how such a maps look like. It turns out they are linear transformations with some restrictions. 
 \begin{proposition}
-	Let $\phi: \C \ \Lambda \to \C \ \Lambda'$ be a holomorphic map between complex tori. 
+	Let $\phi: \C / \Lambda \to \C / \Lambda'$ be a holomorphic map between complex tori. 
 	Then $\phi(z + \Lambda) = mz + b + \Lambda'$ for some $m, b \in \C$ such that $m \Lambda \subset  \Lambda'$. 
 	The map is invertible if and only if $m \Lambda = \Lambda'$.
 \end{proposition}
 \begin{proof}
-	The idea is to use topology to lift the map. As $\R^2 \simeq \C$ is the universal covering space of the torus we know that we can lift $\phi$ to a holomorphic map $\tilde \phi: \C / \Lambda \to \C$. We then can make this into a homolomorphism by first projecting $\C$ onto $\C / \Lambda$. We get a holomorphic map  $\tilde \phi: \C \to \C$.
+	The idea is to use topology to lift the map. As $\R^2 \simeq \C$ is the universal covering space of the torus we know that we can lift $\phi$ to a holomorphic map $\tilde \phi: \C / \Lambda \to \C$. We get a holomorphic map  $\tilde \phi: \C \to \C$.
 	Take any $\lambda \in \Lambda$. 
-	Then the map $f_\lambda(z) = \tilde\phi(z + \lambda) - \tilde \phi(z)$. We know that $f_{\lambda}$ is continous, but we also know that is must map to an element of $\Lambda'$, which is discrete, so it must be constant. 
+	Then the map $f_\lambda(z) = \tilde\phi(z + \lambda) - \tilde \phi(z)$. We know that $f_{\lambda}$ is continuous, but we also know that is must map to an element of $\Lambda'$, which is discrete, so it must be constant. 
 	We can differentiate to find that $\tilde\phi'(z+ \lambda) = \tilde\phi'(z)$ for every $\lambda \in \Lambda$, hence it is  $\Lambda$ periodic. 
 
 	This makes $\tilde\phi'$ bounded so its constant. 
@@ -433,9 +450,9 @@ In light of this we want to know how such a maps look like. It turns out they ar
 We now have a notion of \emph{morphisms} between complex tori. We can now ask ourselves the question how equivalence classes of isomorphic complex tori look like.
 It turns out that every complex torus $\C / \Lambda$ is \emph{isomorphic} to a torus of the form $\C / \Lambda_\tau$, where $\Lambda_\tau = \tau \Z \oplus \Z$, for some $\tau \in  \mathcal{H}$. 
 Indeed, by definition $\Lambda = \omega_1 \Z \oplus \omega_2 \Z$ for some $\omega_1, \omega_2 \in \C$ such that $\omega_1 / \omega_2 \in \mathcal{H} $. Let $\tau = \omega_1 / \omega_2$. 
-Then $\frac{1}{\omega_1} \Lambda = \Lambda_\tau$. 
+Then $\frac{1}{\omega_2} \Lambda = \Lambda_\tau$. 
 So the map  \[
-\phi: \frac{\C}{ \Lambda} \to \frac{\C}{\Lambda_\tau}: z + \Lambda \mapsto \frac{z}{\omega_1} + \Lambda_\tau
+\phi: \frac{\C}{ \Lambda} \to \frac{\C}{\Lambda_\tau}: z + \Lambda \mapsto \frac{z}{\omega_2} + \Lambda_\tau
 \]
 is an isomorphism.
 
@@ -449,16 +466,16 @@ So \[
 \tau' = \frac{m \tau'}{m} = \frac{a \tau + b}{c \tau + d} = \gamma\cdot \tau
 .\] 
 Hence we see that $\tau$ and $\tau'$ lie in the same orbit of the action of $\SL_2\Z$. 
-Converesely $\C / \Lambda_\tau$ and $\C / \Lambda_{\gamma\cdot \tau}$ will always be isomorhic.
-Hence we conclude that there is a bijectice correspondence of isomorphism classes of complex tori and orbits of $\SL_2\Z$ acting on $\mathcal{H} $.\[
+Conversely $\C / \Lambda_\tau$ and $\C / \Lambda_{\gamma\cdot \tau}$ will always be isomorphic.
+Hence we conclude that there is a bijective correspondence of isomorphism classes of complex tori and orbits of $\SL_2\Z$ acting on $\mathcal{H} $.\[
 \begin{tikzcd}
-	\left\{ \substack{\text{isormorphism classes} \\ \text{of complex tori}} \right\} \arrow[r, leftrightarrow] & 
+	\left\{ \substack{\text{isomorphism classes} \\ \text{of complex tori}} \right\} \arrow[r, leftrightarrow] & 
 	\mathcal{H} / \SL_2\Z\ 
 \end{tikzcd}
 .\] 
 \subsection{Isogenies}
-If we only consider the maps where the contsant term $b$ is $0$ then these maps are clearly group morphisms between $\C / \Lambda$ and  $\C / \Lambda'$. 
-As a result, the a holomorphic group morphism between these two tori exists if and only if $m\Lambda = \Lambda'$ for some $m \in \C$. 
+If we only consider the maps where the constant term $b$ is $0$ then these maps are clearly group morphisms between $\C / \Lambda$ and  $\C / \Lambda'$. 
+As a result, the holomorphic group morphism between these two tori exists if and only if $m\Lambda = \Lambda'$ for some $m \in \C$. 
 A nonzero holomorphic group morphism between complex tori is called an \emph{isogeny}.
 
 \begin{lemma}
@@ -467,7 +484,7 @@ A nonzero holomorphic group morphism between complex tori is called an \emph{iso
 \begin{proof}
 	Let $\phi: \C / \Lambda \to \C / \Lambda'$ be an isogeny. 
 	From the previous discussion we know that $\phi(z+\Lambda) = mz + \Lambda'$ for some $m \in\C$ such that $m \Lambda \subset  \Lambda'$. 
-	For every  $x + \lambda'$ it's clear that  $\phi( x / m + \Lambda) = x + \Lambda'$. 
+	For every  $x + \Lambda'$ it is clear that  $\phi( x / m + \Lambda) = x + \Lambda'$. 
 	So  $\phi$ is surjective. 
 	Suppose that $\phi(z + \Lambda) = 0 + \Lambda'$. Then  $m z \in \Lambda'$. So  $z \in  \Lambda'/m$. 
 	We also know that  $\Lambda \subset \Lambda' / m$. 
@@ -475,7 +492,7 @@ A nonzero holomorphic group morphism between complex tori is called an \emph{iso
 	So there are only finitely many $z + \Lambda$ such that  $\phi(z + \Lambda) = 0$.
 \end{proof}
 To gain a more intuitive understanding of isogenies, it is helpful to think of them as functions on the plane that map lattices \emph{into} lattices.
-In this context, we see that an isogeneny can scale and rotate the lattice but we cannot skew it as illustrated in \cref{fig:isogeny}.
+In this context, we see that an isogeny can scale and rotate the lattice but we cannot skew it as illustrated in \cref{fig:isogeny}.
 \begin{figure}[h]
 	\centering
 \incfig{isogeny_complex_plane}
@@ -487,7 +504,7 @@ In this context, we see that an isogeneny can scale and rotate the lattice but w
 	The so called \emph{multiply by integer maps} are isogenies. These are maps of the form \[
 		[N]: \C / \Lambda \to \C / \Lambda: z + \Lambda \mapsto  Nz + \Lambda
 	,\] where $N$ is an integer. 
-	Note that the kernel of this map is $\frac{1}{N}\Lambda / \Lambda$ and is isomorphic to $\Z / N \Z \times  \Z / N \Z$. We denote this kernel as $E[N]$ and is the set of all $N$ torsion points in $\C / \Lambda$. This can be seen in \cref{fig:Ntorsion_subgroup}.
+	Note that the kernel of this map is $\frac{1}{N}\Lambda / \Lambda$ and is isomorphic to $\Z / N \Z \times  \Z / N \Z$. We denote this kernel as $E[N]$ and it is the set of all $N$ torsion points in $\C / \Lambda$. This can be seen in \cref{fig:Ntorsion_subgroup}.
 \end{example}
 	\begin{figure}[h]
 		\incfig{NTorsion_subgroup}	
@@ -497,7 +514,7 @@ In this context, we see that an isogeneny can scale and rotate the lattice but w
 \begin{example}
 	Another example are the \emph{Cyclic quotient maps}. 
 	Let  $\C / \Lambda$ be a complex torus and  $N \in \N$.
-	If take an $N$ torsion point, $\lambda$, of $\C / \Lambda$ (a point in $\frac{1}{N} \Lambda / \Lambda$) then we can consider the subgroup $C$ generated by $\lambda$. Note that $C + \Lambda$ is a super lattice of $\Lambda$. Then the map \[
+	Take an $N$ torsion point, $\lambda$, of $\C / \Lambda$ (a point in $\frac{1}{N} \Lambda / \Lambda$) then we can consider the subgroup $C$ generated by $\lambda$. Note that $C + \Lambda$ is a super lattice of $\Lambda$. Then the map \[
 		\pi: \C \ \Lambda \to \C / (C + \lambda): z + \Lambda \to z + C + \Lambda
 	\]  
 	is an isogeny with kernel $C$. 
@@ -513,7 +530,7 @@ These two examples are very important, as they allow the construction of every i
 	Hence \[
 		K \subset N^{-1} \Lambda / \Lambda \simeq \Z / N \Z \oplus \Z / N \Z. 
 	\]
-	By the structure theorem for finite abelian groups we know that  \[
+	By the structure theorem for finite Abelian groups we know that  \[
 	K \cong \Z / n \Z \times \Z / n n' \Z
 	\]
 	for some $n, n'\in \N$. 
@@ -526,14 +543,13 @@ These two examples are very important, as they allow the construction of every i
 	.\]  
 \end{proof}
 
-\todo{maybe say something about dual maps}
 \subsection{Weil Pairings} \label{sec:Weil_Pairings}
 Let $E[N]$ be the  $N$ torsion subgroup of some complex torus $\C / \Lambda$, with $\Lambda = \omega_1\Z + \omega_2 \Z$. 
 The \emph{Weil pairing} is a map \[
 	e_N: E[N] \times E[N] \to \Z / N\Z
 .\] 
 Although this object comes up a lot in de discussion of complex tori/complex elliptic curves, it is defined very algebraically. 
-Recall that $E[N]$ is generated by $\omega_1 / N$ and $\omega_2 / N$. So every point in $E[N]$ is  $a \cdot \omega_1 / N + b \cdot \omega_2 / N$ for some integers $a, b$ which are defined up to modulo $N$. In essense we may say that $(a, b)$ are the coordinates of point in $E[N]$. 
+Recall that $E[N]$ is generated by $\omega_1 / N$ and $\omega_2 / N$. So every point in $E[N]$ is  $a \cdot \omega_1 / N + b \cdot \omega_2 / N$ for some integers $a, b$ which are defined up to modulo $N$. In essence we may say that $(a, b)$ are the coordinates of point in $E[N]$. 
 Now the map Weil pairing is defined as the map
 \begin{align*}
 	e_n: E[N] \times  E[N] &\longrightarrow \frac{\Z}{N\Z} \\
@@ -541,31 +557,31 @@ Now the map Weil pairing is defined as the map
 .\end{align*}
 \begin{figure}[h]
 	\incfig{weilpairing}
-	\caption{A fun geometric interpretation of the weilpairing}
+	\caption{A fun geometric interpretation of the Weil pairing}
 	\label{fig:weilpairing}
 \end{figure}
-A fun geometric interpretation of the weil pairing is given in \cref{fig:weilpairing}. As the Weil pairing is a determinant there is a geometric interpretation of it as an area. In light of Pick's theorem \cite{wiki:pick} we see that the Weil pairing is the number of points in the shaded region in the figure modulo $N$ (counting the points on the edges as half and on the vertices as $\frac{1}{4}$'th a point). 
-From this interpretation it is imediately obvious that the Weil pairing is independent of the choice of basis for  $\Lambda$ as long as the orientation condition $\frac{\omega_1}{\omega_2} \in \mathcal{H}$ is satisfied. 
+A fun geometric interpretation of the Weil pairing is given in \cref{fig:weilpairing}. As the Weil pairing is a determinant there is a geometric interpretation of it as an area. In light of Pick's theorem \cite{wiki:pick} we see that the Weil pairing is the number of points in the shaded region in the figure minus one modulo $N$ (counting the points on the edges as half). 
+From this interpretation it is immediately obvious that the Weil pairing is independent of the choice of basis for  $\Lambda$ as long as the orientation condition $\frac{\omega_1}{\omega_2} \in \mathcal{H}$ is satisfied. 
 From the definition it is clear that $e_N$ is bilinear and skew symmetric.
 As the Weil pairing is completely defined on the  $\Z / N \Z \times  \Z / N\Z$ group structure of $E[N]$ it is preserved under isomorphism.
-\section{Ellpitic curves and their connection to Complex Tori}
+\section{Elliptic curves and their connection to Complex Tori}
 \subsection{What are Elliptic Curves}
 This section is based on section 1.2 of the book \emph{Rational Points on Elliptic Curves} by Joseph H.\ Silverman and John T.\ Tate\cite{silvermanRationalPointsElliptic2015}.
 An elliptic curve is a cubic curve of the form \begin{equation}\label{eq:elliptic_curve}
 y^2 = 4x^3 - g_2x - g_3
 ,\end{equation}
-where $g_2, g_3 \in \Z$ and $g_2^3 - 27 g_3^2 \ne 0$. 
+where $g_2^3 - 27 g_3^2 \ne 0$. 
 While we do not write this as an homogeneous equation we usually consider this to be its projective closure in $\mathbb{P}^2$. 
-One of the most important properties of elliptic curves is that they have a certain natural abelian group structure. 
+One of the most important properties of elliptic curves is that they have a certain natural Abelian group structure. 
 We first have to choose a zero point, $\mathcal{O} $ Usually we choose the point at infinity.
 Recall B\'ezout's theorem. 
 This states that any line intersects the curve \eqref{eq:elliptic_curve} in exactly 3 points, counting multiplicity.  
 So for any two points $P$ and $Q$ on the curve there is exactly one line, $\ell$ that that intersects the curve in both $P$ and $Q$ (the intersection number is 2  if $P = Q$). 
 Then there is a unique third intersection of this line and the elliptic curve. Let us denote this intersection by $P*Q$.
-We can again take the third intersection of the the line through $P*Q$ and $\mathcal{O}$. This intersection is the result of $P + B$.
-In essence we define define $P + Q =\mathcal{O} *(P*Q)$.
+We can again take the third intersection of the line through $P*Q$ and $\mathcal{O}$. This intersection is the result of $P + B$.
+In essence we define $P + Q =\mathcal{O} *(P*Q)$.
 In the case where $\mathcal{O} $ is the point at infinity, the operation $\mathcal{O} * -$ is mirroring about the $x$ axis. So if $P * Q = (x,y)$, then $P + Q = (x, -y)$.
-It can definitely be shown directly that this is a well defined abelian group structure. But we will show this in a more indirect way. 
+It can definitely be shown directly that this is a well defined Abelian group structure. But we will show this in a more indirect way. 
 
 In the next section we will bijects the points on the curve \eqref{eq:elliptic_curve} with the points of a certain complex torus and show that the group action of the elliptic curve corresponds with the addition on the complex torus.
 
@@ -573,7 +589,7 @@ In the next section we will bijects the points on the curve \eqref{eq:elliptic_c
 We now continue our discussion of \cite{diamondFirstCourseModular2005a}.
 
 Elliptic curves are related to complex tori, by the meromorphic functions from the complex tori to the complex plane. These functions are also called \emph{elliptic functions}. 
-A elliptic function $\phi: \C / \Lambda \to \C \cup \{\infty\} $ is naturally identified with a  $\Lambda$-periodic function $\phi': \C \to \C \cup \{\infty\}: z \mapsto \phi(z + \Lambda)$. 
+An elliptic function $\phi: \C / \Lambda \to \C \cup \{\infty\} $ is naturally identified with a  $\Lambda$-periodic function $\phi': \C \to \C \cup \{\infty\}: z \mapsto \phi(z + \Lambda)$. 
 We will often make use of this identification implicitly. 
 One may wonder how a non-trivial example of such a function looks like. 
 One example of particular interest is the \emph{Weierstrass $\wp$-function}. 
@@ -581,7 +597,7 @@ For a given lattice  $\Lambda$ we define this function to be \[
 	\wp(z) = \frac{1}{z^2} + \sum_{\substack{\omega \in \Lambda \\ \omega \ne 0}}\left( \frac{1}{(z-\omega)^2} - \frac{1}{\omega^2} \right) 
 .\] 
 At first glance it seems obvious that such a function is $\Lambda$ periodic, but we have to be careful. 
-While this sum is absolutely convergent on compact sets, its is not if we split up $\frac{1}{(z-\omega^2)} - \frac{1}{\omega^2}$ into two different summations. So we cannot simply permute the terms in the desired way. 
+While this sum is absolutely convergent on compact sets, it is not if we split up $\frac{1}{(z-\omega^2)} - \frac{1}{\omega^2}$ into two different summations. So we cannot simply permute the terms in the desired way. 
 It still is $\Lambda$-periodic. Indeed, notice that  \[
 	\wp'(z) = -2 \sum_{\omega \in \Lambda} \frac{1}{(z - \omega)^3}
 \] 
@@ -621,7 +637,7 @@ We can describe the Laurent expansion of $\wp$ using these Eisenstein series.
   .\] 
 \end{proposition}
 \begin{proof}
-	As we are dealing with analytical functions it is sufficient to show equality on an non-empty open. We choose a neighbourhood of 0 such that in that for every $z$ in that neighbourhood $|z| < |\omega|$ for all $\omega \in \Lambda \setminus \{ 0\} $. It that case the following calculation is valid. 
+	As we are dealing with analytical functions it is sufficient to show equality on an non-empty open. We choose a neighbourhood of 0 such that for every $z$ in that neighbourhood $|z| < |\omega|$ for all $\omega \in \Lambda \setminus \{ 0\} $. It that case the following calculation is valid. 
 \begin{align*}
 	\frac{1}{(z- \omega)^2} - \frac{1}{\omega^2} &= \frac{1}{\omega^2}\left( \left( \frac{1}{(1-z / \omega)} \right) ^2 - 1 \right)  \\
 						     &= \frac{1}{\omega^2}\left( \left( \sum_{n = 0}^{\infty} \left(\frac{z}{\omega}\right)^{n} \right)^2 - 1  \right) \\
@@ -633,7 +649,7 @@ Putting this result in the expression for $\wp_\Lambda$ yields
 	\wp(z) &= 
 	\frac{1}{z^2} + \sum_{\substack{\omega \in \Lambda \\ \omega \ne 0 }} \frac{1}{(z - \omega)^2} - \frac{1}{\omega^2} \\
 	       &=  \frac{1}{z^2} + \sum_{\substack{\omega \in \Lambda \\ \omega \ne 0}} \sum _{n = 1}^{\infty} (n + 1)  \frac{z^{n}}{\omega^{n+2}}\\
-	       &= \frac{1}{z^2} + \sum_{n = 1}^{\infty}\sum_{\substack{\omega \in \Lambda \\ \omega \ne 0 }} (n + 1) \frac{z^{n}}{\omega^{n+2}} \\
+	       &= \frac{1}{z^2} + \sum_{n = 1}^{\infty}\sum_{\substack{\omega \in \Lambda \\ \omega \ne 0 }} (n + 1) \frac{z^{n}}{\omega^{n+2}}.
 \end{align*}
 We can exchange the order of summation as it turns out that this is an absolutely convergent series. 
 When $n$ is odd we see that every term $ (n + 1) \frac{z^{n}}{\omega^{n+2}}$ cancels against $(n + 1) \frac{z^{n}}{(-\omega)^{n+2}}$. 
@@ -678,7 +694,7 @@ The function $\wp$ what connects complex tori to elliptic curves.
 \end{proof}
 
 Let's try to unpack the statement of \cref{thm:complex_tori_elliptic_curves}.
-The first part shows that there is a map from a comples torus to an elliptic curve 
+The first part shows that there is a map from a complex torus to an elliptic curve 
 \begin{align*}
 	\frac{\C}{\Lambda} &\longrightarrow \text{elliptic curve: } Z(x^3 - a x - b -y ^2) \\
 	z+\Lambda &\longmapsto \left(\wp_\Lambda(z), \wp'_\Lambda(z)\right)
@@ -693,51 +709,51 @@ Let $ax + by + c = 0$ be the line that intersects the elliptic curve in both the
 Define the function \[
 	f(z) = a \wp_{\Lambda}(z) + b \wp'_\Lambda(z) + c
 .\] 
-Clearly $z_1, z_2$ are two zeros of this function. Obviously the third interesction of the line with the curve corresponds to the third zero of $f$. 
-By \cref{ex:1.4.1} we see that this third zero, $z_3$, must be such that $z_1 + z_2 + z_3 + \Lambda = 0 + \Lambda$. 
+Clearly $z_1, z_2$ are two zeros of this function. Obviously the third intersection of the line with the curve corresponds to the third zero of $f$. 
+By \cref{ex:1.4.1} we see that there are exactly three zeros and that this third zero, $z_3$, must be such that $z_1 + z_2 + z_3 + \Lambda = 0 + \Lambda$. 
 Hence $z_3 = - z_1 - z_2$. Its corresponding point on the elliptic curve is 
 $(\wp_\Lambda(z_3), \wp'_\Lambda(z_3))$.
 So $P + Q = (\wp_\Lambda(z_3), - \wp'_\Lambda(z_3)) = (\wp_\Lambda(-z_3), \wp'_\Lambda(-z_3)$. 
 Thus the map respects the group action. 
 
 
-From now on we will often say complex elliptic curve, instead of complex torus to highlight their interpretation as elliptic curves. Further, we will often denote complex elliptic curves with a simple symbol (often $E$) instead of always writing them as the quotient  $\C / \Lambda$. In particular we write $E_\tau  = \C / \Lambda_\tau$.
+From now on I will often say complex elliptic curve, instead of complex torus to highlight their interpretation as elliptic curves. Further, I will often denote complex elliptic curves with a simple symbol (often $E$) instead of always writing them as the quotient  $\C / \Lambda$. In particular we write $E_\tau  = \C / \Lambda_\tau$.
 
-I will state, but not prove, that the map from complex elliptic curves to ordinary elliptic curves is actually functorial, meaning that every morphism between complex elliptic curves corresponds to a morphism as a variety on the corresponding ordinary curves.
+I will state, but not prove, that the map from complex elliptic curves to ordinary elliptic curves is actually functorial, meaning that every morphism between complex elliptic curves corresponds to a morphism as a variety on the corresponding ordinary elliptic curves.
 
 \section{Modular Curves and Moduli Spaces} \label{sec:modular_curves_and_moduli_spaces}
 The title of this paper is modular curves, but so far have not defined these. 
-The definition of these objects is very simple, but like any object in this paper, the real suprises are it's relations to other objects. 
+The definition of these objects is very simple, but like any object in this paper, the real surprises are it's relations to other objects. 
 \begin{definition}
 	Let $\Gamma \subset \SL_2\Z$ be any congruence subgroup. Then the \emph{modular curve}, $Y(\Gamma)$, is defined as the set of orbits of elements in  $\mathcal{H} $ under  the action of $\Gamma$, \[
 		Y(\Gamma) = \mathcal{H} / \sim = \{\Gamma \tau \;|\; \tau \in \mathcal{H} \} 
 	.\] 
 \end{definition}
 Recall the subgroups $\Gamma(N), \Gamma_1(N), \Gamma_0(N)$ from \cref{sec:subgroups_of_the_modular_group}. 
-Often we are interested in the modular curves corresponding to these congruence subgroups, so we denote \[
+Often we are interested in the modular curves corresponding to these congruence subgroups. So we denote \[
 	Y_0(N) = Y(\Gamma_0(N)),\;\;\; Y_1(N) = Y(\Gamma_1(N)),\;\;\; Y(N) = Y(\Gamma(N))
 .\]  
  
-In \cref{sec:modular_forms_and_complex_tori} we have seen that there is a bijective correspondence between equivaleny classes of complex elliptic curves and points in $Y (\SL_2\Z)$. 
+In \cref{sec:modular_forms_and_complex_tori} we have seen that there is a bijective correspondence between equivalence classes of complex elliptic curves and points in $Y (\SL_2\Z)$. 
 One may wonder whether there there is a similar result for modular curves $Y_0(N),Y_1(N)$ and $Y(N)$.
 It turns out there is. 
-Instead of restricting the isomorphisms between the complex elliptic curves, we will actually give the elliptic curves extra information, resulting in \emph{enhanced elliptic curves}. 
+Instead of simply restricting the isomorphisms between the complex elliptic curves, we will actually give the elliptic curves extra information, resulting in \emph{enhanced elliptic curves}. 
 
 \subsection{Enhanced Elliptic Curves and Moduli Spaces} \label{sec:enhanced_elliptic_curves_and_moduli_spaces}
 There are three common ways of `adding information' to elliptic curves, creating \emph{enhanced elliptic curves}. Moduli Spaces are equivalence classes of enhanced elliptic curves.  
 \begin{definition} \hspace{\linewidth}
 	\begin{enumerate}
-		\item An \emph{enhanced elliptic curve for $\Gamma_0(N)$} is an pair $(E, C)$ where  $E$ is a complex elliptic curve and $C$ is an cyclic subgroup of order $N$.
+		\item An \emph{enhanced elliptic curve for $\Gamma_0(N)$} is a pair $(E, C)$ where  $E$ is a complex elliptic curve and $C$ is a cyclic subgroup of order $N$.
 		Two of these curves $(E_1, C_1), (E_2, C_2)$ are equivalent if and only if there is an isomorphism from $E_1$ to $E_2$ that restricts to an isomorphism from $C_1$ to $C_2$.
 		The associated \emph{moduli space} is \[
 			S_0(N) = \{ \text{enhanced elliptic curves for } \Gamma_0(N)\} / \sim
 		.\] 
-	\item An \emph{enhanced elliptic curve for $\Gamma_1(N)$} is an pair $(E, Q)$ where  $E$ is a complex elliptic curve and $Q$ is point in $E$ of order $N$.
+	\item An \emph{enhanced elliptic curve for $\Gamma_1(N)$} is a pair $(E, Q)$ where  $E$ is a complex elliptic curve and $Q$ is a point in $E$ of order $N$.
 		Two of these curves $(E_1, Q_1), (E_2, Q_2)$ are equivalent if and only if there is an isomorphism from $E_1$ to $E_2$ that maps $Q_1$ to $Q_2$.
 		The associated \emph{moduli space} is \[
 			S_1(N) = \{ \text{enhanced elliptic curves for } \Gamma_1(N)\} / \sim
 		.\] 
-	\item An \emph{enhanced elliptic curve for $\Gamma(N)$} is an tripple $(E, P, Q)$ where  $E$ is a complex elliptic curve and $P, Q$ are points in the $N$-torsion subgroup $E[N]$ such  that the weil pairing  $e_N(P, Q) = 1$.
+	\item An \emph{enhanced elliptic curve for $\Gamma(N)$} is an triple $(E, P, Q)$ where  $E$ is a complex elliptic curve and $P, Q$ are points in the $N$-torsion subgroup $E[N]$ such  that the weil pairing  $e_N(P, Q) = 1$.
 		Two of these curves $(E_1, P_1, Q_1), (E_2, P_2, Q_2)$ are equivalent if and only if there is an isomorphism from $E_1$ to $E_2$ that maps $P_1$ to $P_2$ and $Q_1$ to $Q_2$
 		The associated \emph{moduli space} is \[
 			S(N) = \{ \text{enhanced elliptic curves for } \Gamma(N)\} / \sim
@@ -751,28 +767,28 @@ There are three common ways of `adding information' to elliptic curves, creating
 	\label{fig:enhanced_elliptic_curves}
 \end{figure}
 \Cref{fig:enhanced_elliptic_curves} gives a visualisation of these enhanced elliptic curves.
-The following theorem gives a generalisation of the conclusion of \cref{sec:modular_forms_and_complex_tori}, showing that there are bijections in the modular curves $Y_0(N), Y_1(N), Y(N)$ and the moduli spaces $S_0(N), S_1(N), S(N)$, as well as providing more insight in what the moduli spaces look like. 
+The following theorem gives a generalisation of the conclusion of \cref{sec:modular_forms_and_complex_tori}, showing that there are bijections between the modular curves $Y_0(N), Y_1(N), Y(N)$ and the moduli spaces $S_0(N), S_1(N), S(N)$, as well as providing more insight in what the moduli spaces look like. 
 \begin{theorem}\label{thm:correspondence_modulispaces}
 	\hspace{\linewidth}
 	\begin{enumerate}
-		\item Every enhanced elliptic curve for $\Gamma_0(N)$ is equivalent to curve of the form $(E_\tau, \left<1 / N + \Lambda_\tau \right>)$ for some $\tau \in \mathcal{H} $. 
+		\item Every enhanced elliptic curve for $\Gamma_0(N)$ is equivalent to a curve of the form $(E_\tau, \left<1 / N + \Lambda_\tau \right>)$ for some $\tau \in \mathcal{H} $. 
 			Two curves in this form $(E_\tau, \left<1 / N + \Lambda_\tau \right>)$ and $(E_\sigma, \left<1 / N + \Lambda_\sigma \right>)$ are equivalent if and only if $\Gamma_0\left( N \right) \tau = \Gamma_0(N) \sigma$. There is a bijective correspondence
 			\begin{align*}
 				S_0(N) &\longrightarrow Y_0(N) \\
 				\left[\frac{\C}{\Lambda_\tau}, \left<\frac{1}{N} + \Lambda_\tau \right>\right] &\longmapsto \Gamma_0(\N)\tau
 			.\end{align*}
 	
-		\item Every enhanced elliptic curve for $\Gamma_1(N)$ is equivalent to curve of the form $(E_\tau, 1 / N + \Lambda_\tau )$ for some $\tau \in \mathcal{H} $. 
+		\item Every enhanced elliptic curve for $\Gamma_1(N)$ is equivalent to a curve of the form $(E_\tau, 1 / N + \Lambda_\tau )$ for some $\tau \in \mathcal{H} $. 
 			Two curves in this form $(E_\tau, 1 / N + \Lambda_\tau )$ and $(E_\sigma, 1 / N + \Lambda_\sigma)$ are equivalent if and only if $\Gamma_1\left( N \right) \tau = \Gamma_1(N) \sigma$. There is a bijective correspondence
 			\begin{align*}
 				S_1(N) &\longrightarrow Y_1(N) \\
-				\left[\frac{\C}{\Lambda_\tau}, \frac{1}{N} + \Lambda_\tau \right] &\longmapsto \Gamma_1(\N)\tau
+				\left[\frac{\C}{\Lambda_\tau}, \frac{1}{N} + \Lambda_\tau \right] &\longmapsto \Gamma_1(N)\tau
 			.\end{align*}
-		\item Every enhanced elliptic curve for $\Gamma(N)$ is equivalent to curve of the form $(E_\tau, \tau / N + \Lambda_\tau, 1 / N + \Lambda_\tau )$ for some $\tau \in \mathcal{H} $. 
+		\item Every enhanced elliptic curve for $\Gamma(N)$ is equivalent to a curve of the form $(E_\tau, \tau / N + \Lambda_\tau, 1 / N + \Lambda_\tau )$ for some $\tau \in \mathcal{H} $. 
 			Two curves in this form $(E_\tau, \tau / N + \Lambda_\tau,  1 / N + \Lambda_\tau )$ and $(E_\sigma, \sigma / N + \Lambda_\sigma,1 / N + \Lambda_\sigma)$ are equivalent if and only if $\Gamma\left( N \right) \tau = \Gamma(N) \sigma$. There is a bijective correspondence
 			\begin{align*}
 				S(N) &\longrightarrow Y(N) \\
-				\left[\frac{\C}{\Lambda_\tau}, \frac{\tau}{N} + \Lambda_\tau, \frac{1}{N} + \Lambda_\tau \right] &\longmapsto \Gamma(\N)\tau
+				\left[\frac{\C}{\Lambda_\tau}, \frac{\tau}{N} + \Lambda_\tau, \frac{1}{N} + \Lambda_\tau \right] &\longmapsto \Gamma(N)\tau
 			.\end{align*}
 	\end{enumerate}
 \end{theorem}
@@ -794,8 +810,8 @@ The following theorem gives a generalisation of the conclusion of \cref{sec:modu
 		.\] 
 		As this is an invertible matrix it follows that $\Lambda = \omega_1' \Z \oplus \omega_2' \Z$. 
 	In this new basis we see that the enhanced elliptic curve looks like $(\C / \Lambda, \left< 1 / N \omega_2'\right>)$.
-	Recall from \cref{sec:modular_forms_and_complex_tori} that  $\phi: z  + \Lambda \mapsto  \frac{1}{\omega_2'} z + \Lambda_\tau$ with $\tau = \frac{\omega_1}{\omega_2}$. 
-	This maps  $\left<\omega_2 / N \right>$ to $\left<1 / N + \Lambda_\tau \right>$.
+	Recall from \cref{sec:modular_forms_and_complex_tori} that  $\phi: z  + \Lambda \mapsto  \frac{1}{\omega_2'} z + \Lambda_\tau$ with $\tau = \frac{\omega_1'}{\omega_2'}$. 
+	This maps  $\left<\omega_2' / N \right>$ to $\left<1 / N + \Lambda_\tau \right>$.
 	Hence  \[
 		\left( \frac{\C}{\Lambda}, \left<c \frac{\omega_1}{N} + d \frac{\omega_2}{N} \right> \right) 	\simeq  
 		\left( E_\tau, \left<\frac{1}{N} + \Lambda_\tau \right> \right) 
@@ -836,7 +852,7 @@ The following theorem gives a generalisation of the conclusion of \cref{sec:modu
 	if and only if $\tau = \gamma \cdot \sigma$ for some $\gamma \in \Gamma_1(N)$.
 	Recall that $\Gamma_0(N)$ is the set of all matrices $\begin{pmatrix} a & b \\ c & d \end{pmatrix} \in \SL_2\Z$ where $c \equiv 0, a \equiv d \equiv 1 \mod N$. 
 
-	\ltr Suppose that $\phi: z\mapsto  m z$ is such an isomorphism is such an isomorphism.
+	\ltr Suppose that $\phi: z\mapsto  m z$ is such an isomorphism.
 	Then $m \Lambda_\tau = \Lambda_\sigma$ for some $m$. So \[
 	\begin{pmatrix} m \tau \\ m \end{pmatrix} = 
 	\gamma \cdot  \begin{pmatrix} \sigma \\ 1 \end{pmatrix} , 
@@ -856,18 +872,18 @@ The following theorem gives a generalisation of the conclusion of \cref{sec:modu
 
 	\item Let 
 		\[\left( C / \Lambda, a \frac{\omega_1}{N} + b \frac{\omega_2}{N} + \Lambda,  c \frac{\omega_1}{N}  + d \frac{\omega_2}{N}  + \Lambda \right) ,\]
-	where $\Lambda = \omega_1 \Z \oplus \omega_2 \Z$ be any enhanced complex elliptic curve for $\Gamma(N)$.
+	where $\Lambda = \omega_1 \Z \oplus \omega_2 \Z$, be any enhanced complex elliptic curve for $\Gamma(N)$.
 	As the Weil pairing of the two points is 1 we know that $ad - bc \equiv 1 \mod N $. 
-	It can be shown that we can find $a', b', c', d' \equiv a, b, c, d \mod N$ such that  $a'd' - b'c' = 1$. 
+	It can be shown that we can find $a', b', c', d' \equiv a, b, c, d \mod N$ such that  $a'd' - b'c' = 1$ (this is not particularly difficult to show, but proving it here would distract from the main argument). 
 	We will assume that this has been the case from the beginning.  This means that the matrix  $\begin{pmatrix} a & b \\ c& d \end{pmatrix}  \in \SL_2\Z$ and hence invertible.  Let \[
 		\begin{pmatrix} \omega_1' \\ \omega_2' \end{pmatrix}  = 
 		\begin{pmatrix} a & b \\ c & d \end{pmatrix} 
 		\begin{pmatrix} \omega_1 \\ \omega_2 \end{pmatrix} 
 	.\] 
 	As this is an invertible matrix it follows that $\Lambda = \omega_1' \Z \oplus \omega_2' \Z$. 
-	In this new basis we see that the enhanced elliptic curve looks like $(\C / \Lambda, 1 / N \omega_1,  1 / N \omega_2)$.
-	Recall from \cref{sec:modular_forms_and_complex_tori} that  $\phi: z  + \Lambda \mapsto  \frac{1}{\omega_2'} z + \Lambda_\tau$ with $\tau = \frac{\omega_1}{\omega_2}$. 
-	This maps  $\left<\omega_2 / N  + \Lambda \right>$ to $\left<1 / N + \Lambda_\tau \right>$.
+	In this new basis we see that the enhanced elliptic curve looks like $(\C / \Lambda, 1 / N \omega_1',  1 / N \omega_2')$.
+	Recall from \cref{sec:modular_forms_and_complex_tori} that  $\phi: z  + \Lambda \mapsto  \frac{1}{\omega_2'} z + \Lambda_\tau$ with $\tau = \frac{\omega_1'}{\omega_2'}$. 
+	This maps  $\left<\omega_2' / N  + \Lambda \right>$ to $\left<1 / N + \Lambda_\tau \right>$.
 	Hence  \[
 		\left( C / \Lambda, a \frac{\omega_1}{N} + b \frac{\omega_2}{N} + \Lambda,  c \frac{\omega_1}{N}  + d \frac{\omega_2}{N}  + \Lambda \right)
 		\simeq
@@ -879,9 +895,9 @@ The following theorem gives a generalisation of the conclusion of \cref{sec:modu
 		\left( E_\sigma, \frac{\sigma}{N} + \Lambda_ \sigma, \frac{1}{N} + \Lambda_\sigma \right) 
 	\]
 	if and only if $\tau = \gamma \cdot \sigma$ for some $\gamma \in \Gamma(N)$.
-	Recall that $\Gamma(N)$ is the set of all matrices $\begin{pmatrix} a & b \\ c & d \end{pmatrix} \in \SL_2\Z$ where $c \equiv d \equiv 0, a \equiv d \equiv 1 \mod N$. 
+	Recall that $\Gamma(N)$ is the set of all matrices $\begin{pmatrix} a & b \\ c & d \end{pmatrix} \in \SL_2\Z$ where $b \equiv c \equiv 0, a \equiv d \equiv 1 \mod N$. 
 
-	\ltr Suppose that $\phi: z\mapsto  m z$ is such an isomorphism is such an isomorphism.
+	\ltr Suppose that $\phi: z\mapsto  m z$ is such an isomorphism.
 	Then $m \Lambda_\tau = \Lambda_\sigma$ for some $m$. So \[
 	\begin{pmatrix} m \tau \\ m \end{pmatrix} = 
 	\gamma \cdot  \begin{pmatrix} \sigma \\ 1 \end{pmatrix} , 
@@ -894,9 +910,9 @@ The following theorem gives a generalisation of the conclusion of \cref{sec:modu
 	.\end{align*}
 	From this we see that $c \equiv 0, d \equiv 1 \mod N$. 
 	\begin{align*}
-		m(\frac{\tau}{N} + \Lambda_\tau) &= \frac{m\tau}{N} + \Lambda_\sigma \\
+		m\left(\frac{\tau}{N} + \Lambda_\tau\right) &= \frac{m\tau}{N} + \Lambda_\sigma \\
 		&= a \frac{\sigma}{N} + b \frac{1}{N} + \Lambda_\sigma \\
-		&= \frac{\sigma}{N} \\
+		&= \frac{\sigma}{N} 
 	.\end{align*}
 	So $a \equiv 1, b \equiv 0 \mod N$
 	It follows that $\gamma  \in \Gamma(N)$. 
@@ -908,7 +924,7 @@ The following theorem gives a generalisation of the conclusion of \cref{sec:modu
 	\end{enumerate}
 \end{proof}
 
-\subsection{Reintepreting Modular Forms} \label{sec:reintepreting_modular_forms}
+\subsection{Reinterpreting Modular Forms} \label{sec:reintepreting_modular_forms}
 
 There is a bijection between the weakly modular forms of degree $k$ on $\mathcal{H}$ and the so called  \emph{degree $k$ homogenous functions with respect to $\Gamma$ }, which are functions on the set of enhanced elliptic curves for $\Gamma$. 
 \begin{definition}
@@ -928,8 +944,8 @@ Given such a function $F$ we can define the function $f: \mathcal{H} \mapsto  \C
 		F(E_\tau, \tau / N + \Lambda_\tau, 1 / N + \Lambda_\tau). \\
 	\end{cases}
 \] 
-The case considered depends on the conrguence subgroup $\Gamma$.
-It turns out that  $f$ is weight-$k$ invariant with respect to $\Gamma$. Indeed by \cref{thm:correspondence_modulispaces} if $\tau = \gamma \sigma$ for some  $\gamma = \begin{pmatrix} a & b \\ c & d \end{pmatrix}  \in \Gamma$ then the enhanced elliptic curves  $E_\tau, E_\sigma$ are isomorphic with isomorphism $\phi: E_\tau \to E_\sigma: z \mapsto (c \sigma + d) z$.
+The case considered depends on the congruence subgroup $\Gamma$.
+It turns out that  $f$ is weight-$k$ invariant with respect to $\Gamma$. Indeed by \cref{thm:correspondence_modulispaces} if $\tau = \gamma \cdot \sigma$ for some  $\gamma = \begin{pmatrix} a & b \\ c & d \end{pmatrix}  \in \Gamma$ then the enhanced elliptic curves  $E_\tau, E_\sigma$ are isomorphic with isomorphism $\phi: E_\tau \to E_\sigma: z \mapsto (c \sigma + d) z$.
 From this it follows that \[
 	f(\gamma\cdot \sigma) = f(\tau) = F(E_\tau) = (c \sigma + d)^{k}F(E_\sigma) = (c \sigma + d)^{k}f(\sigma)
 .\]
@@ -952,8 +968,8 @@ It is an easy exercise to see that this extension is well defined.
 	Then we can choose a matrix \[
 		A =\begin{pmatrix} a & b \\ c& d\end{pmatrix} \in \SL_2\Z \setminus \mathcal{A} 
 	\] 
-	with mimimal 1-norm, i.e. $|a| + |b| + |c| + |d|$ is minimal.
-	We know that the determinant is one, hence $ad- bc = 1$. From this a couple things follow. Atleast one of  $|a|, |b|,|c|,|d|$ is greater or equal to 3 because all the matrices where $a, b, c, d = \pm 1, \pm 2$ can clearly be constructed using the generators. Suppose that without loss of generality that $|a|$ is a largest value among these (otherwise we can multiply by $\gamma$ on the left or right side to bring the largest value to the top left corner).
+	with minimal 1-norm, i.e. $|a| + |b| + |c| + |d|$ is minimal.
+	We know that the determinant is one, hence $ad- bc = 1$. From this a couple things follow. At least one of  $|a|, |b|,|c|,|d|$ is greater or equal to 3 because all the matrices where $a, b, c, d = \pm 1, \pm 2$ can clearly be constructed using the generators. Suppose that without loss of generality that $|a|$ is a largest value among these (otherwise we can multiply by $\gamma$ on the left or right side to bring the largest value to the top left corner).
 	As  $ab - bc = 1$ we can see that neither  $b, c, d$ can be equal to $\pm a$.  
 	So  $|a|$ is not just a largest, it is the largest. 
 	We can also see that $|d|$ cannot be the second largest. 
@@ -970,7 +986,7 @@ It is an easy exercise to see that this extension is well defined.
 	This contradicts the minimality of $A$. 
 \end{proof}
 \begin{exercise}[exercise 1.4.1 in \cite{diamondFirstCourseModular2005a}] \label{ex:1.4.1}
-	Let $\Lambda = \omega_1 \Z + \omega_2 \Z$ be a lattice,  $f$ be a non-constant elliptic function on $\C / \Lambda$ and $P = \{x \omega_1 + y\omega_2 \;|\: x, y \in [0,1]\} $ be a fundamental parallellogram of $\Lambda$.
+	Let $\Lambda = \omega_1 \Z + \omega_2 \Z$ be a lattice,  $f$ be a non-constant elliptic function on $\C / \Lambda$ and $P = \{x \omega_1 + y\omega_2 \;|\: x, y \in [0,1]\} $ be a fundamental parallelogram of $\Lambda$.
 	 \begin{enumerate}
 		\item Proof that the sum of residues on $f$ is 0. 
 		\item Proof that $f$ has as many poles as zeroes (counting multiplicity). 
