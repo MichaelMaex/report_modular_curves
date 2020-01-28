@@ -5,7 +5,7 @@
 \usepackage{textcomp}
 %\usepackage[dutch]{babel}
 \usepackage{amsmath, amssymb, amsthm}
-%\usepackage{geometry}
+\usepackage{geometry}
 \usepackage{tikz-cd}
 \usepackage{mdframed}
 \usepackage{color}
@@ -36,7 +36,7 @@
   {\bfseries}% name of head font
   {}% punctuation between head and body
   { }% space after theorem head; " " = normal interword spae
-  {\thmname{#1}\thmnumber{ #2}\thmnote{ (#3)}}
+  {\thmname{#1}\thmnumber{ #2}\thmnote{ (#3) } \hspace{.1cm}}
 
 \newtheoremstyle{definitiondd}% name of the style to be used
   {7pt}% measure of space to leave above the theorem. E.g.: 3pt
@@ -46,7 +46,7 @@
   {\bfseries}% name of head font
   {}% punctuation between head and body
   { }% space after theorem head; " " = normal interword space
-  {\thmname{#1}\thmnumber{ #2}\thmnote{ (#3)}}
+  {\thmname{#1}\thmnumber{ #2}\thmnote{ (#3) } \hspace{.1cm}}
 
   \newtheoremstyle{remarkdd}% name of the style to be used
   {7pt}% measure of space to leave above the theorem. E.g.: 3pt
@@ -56,7 +56,7 @@
   {\itshape}% name of head font
   {}% punctuation between head and body
   { }% space after theorem head; " " = normal interword space
-  {\thmname{#1}\thmnumber{ #2} \thmnote{ (#3)}}
+  {\thmname{#1}\thmnumber{ #2} \thmnote{ (#3)} \hspace{.1cm}}
 
 
 \theoremstyle{theoremdd}
@@ -587,12 +587,12 @@ It still is $\Lambda$-periodic. Indeed, notice that  \[
 \] 
 this is periodic function as we can permute the terms in the sum.
 We will now show that this implies that $\wp$ is $\Lambda$-periodic (exercise 1.4.2).
-Note that $\wp$ is symmetric, as showing this can indeed be achieved by permuting the right terms.
+Note that $\wp$ is symmetric, as in this case we can permute the right terms.
 For any $\omega \in \Lambda$ is holds that 
 \[
 	(\wp(z) - \wp(z + \omega))' = \wp'(z) - \wp'(z+ \omega) = 0 
 .\] 
-From this it follows that $\wp(z) - \wp(z + \omega)$ is constant a constant function of $z$, everywhere where it is defined.
+From this it follows that $\wp(z) - \wp(z + \omega)$ is a constant function of $z$, everywhere where it is defined.
 In particular it is the case that \[
 	\wp\left(-\frac{\omega}{2}\right) - \wp\left(\omega - \frac{\omega}{2}\right) = \wp\left(\frac{\omega}{2}\right) - \wp\left(\frac{\omega}{2}\right)  = 0 
 .\] 
@@ -609,7 +609,7 @@ Recall that \emph{Eisenstein-series} $G_k$ is the function defined as \[
 Note that this is equal to \[
 	G_k(\tau) = \sum_{\substack{\omega \in \Lambda_\tau \\ \omega \ne 0}} \frac{1}{\omega}
 .\] 
-In this spirit we extend the definition of the eisentein series as follows. For a given lattice $\Lambda$ and an even number  $k > 2$ we define \[
+In this spirit we extend the definition of the Eisenstein series as follows. For a given lattice $\Lambda$ and an even number  $k > 2$ we define \[
 	G_k(\Lambda) = \sum_{\substack{\omega \in \Lambda \\ \omega \ne 0}} \frac{1}{\omega^{k}}
 .\] 
 This is indeed a very natural generalisation as $G_k(\tau) = G_k(\Lambda_\tau)$.
@@ -621,14 +621,14 @@ We can describe the Laurent expansion of $\wp$ using these Eisenstein series.
   .\] 
 \end{proposition}
 \begin{proof}
-	As we are dealing with analytical functions it is sufficient to show equality on an non empty open. We choose a neighbourhood of 0 such that in that neighbourhood $|z| < |\omega|$ for all $\omega \in \Lambda \setminus \{ 0\} $. It that case it holds that. 
+	As we are dealing with analytical functions it is sufficient to show equality on an non-empty open. We choose a neighbourhood of 0 such that in that for every $z$ in that neighbourhood $|z| < |\omega|$ for all $\omega \in \Lambda \setminus \{ 0\} $. It that case the following calculation is valid. 
 \begin{align*}
 	\frac{1}{(z- \omega)^2} - \frac{1}{\omega^2} &= \frac{1}{\omega^2}\left( \left( \frac{1}{(1-z / \omega)} \right) ^2 - 1 \right)  \\
 						     &= \frac{1}{\omega^2}\left( \left( \sum_{n = 0}^{\infty} \left(\frac{z}{\omega}\right)^{n} \right)^2 - 1  \right) \\
 						     &= \frac{1}{\omega^2}\left( \sum_{n = 0}^{\infty} (n + 1)  \left( \frac{z}{\omega} \right) ^{n} - \right)  \\
 						     &= \sum_{n = 1}^{\infty} (n + 1)  \frac{z^{n}}{\omega^{n+2}} \\
 \end{align*}	
-We can fill this in in the expression for $\wp_\Lambda$ yields
+Putting this result in the expression for $\wp_\Lambda$ yields
 \begin{align*}
 	\wp(z) &= 
 	\frac{1}{z^2} + \sum_{\substack{\omega \in \Lambda \\ \omega \ne 0 }} \frac{1}{(z - \omega)^2} - \frac{1}{\omega^2} \\
@@ -650,7 +650,7 @@ The function $\wp$ what connects complex tori to elliptic curves.
 	,\end{equation}
 	where $g_2(\Lambda) = 60 G_4(\Lambda), g_3(\Lambda) = 140 G_6(\Lambda)$.
 	The right hand side of this equation also factors in the following way \[
-		y^2 = 4x^3 - g_2(\Lambda) x^2 - g_3(\Lambda) = 4\left(x - \wp_\Lambda\left(\frac{\omega_1}{2}\right)\right)\left(x - \wp_{\Lambda}\left(\frac{\omega_2}{2}\right)\right)\left(x - \wp\left(\frac{\omega_1 + \omega_2}{2}\right)\right)
+		4x^3 - g_2(\Lambda) x^2 - g_3(\Lambda) = 4\left(x - \wp_\Lambda\left(\frac{\omega_1}{2}\right)\right)\left(x - \wp_{\Lambda}\left(\frac{\omega_2}{2}\right)\right)\left(x - \wp\left(\frac{\omega_1 + \omega_2}{2}\right)\right)
 	.\] 
 \end{theorem}
 \begin{proof}
@@ -684,7 +684,7 @@ The first part shows that there is a map from a comples torus to an elliptic cur
 	z+\Lambda &\longmapsto \left(\wp_\Lambda(z), \wp'_\Lambda(z)\right)
 .\end{align*}
 We know that this is an elliptic curve as it the right hand side has three distinct roots so its determinant $a^2 - 27 b^3 \ne 0  $.
-We can see that this map is bijective. By \cref{ex:1.4.1}  $\wp_\Lambda$  takes every value twice. As this is an even function a certain $x \in \C$ must be taken twice, once by $z$ once by $-z$ and because $\wp'$ is an odd function $\wp'(z) \ne \wp'(-z)$ unless $z = 0$.  By for every $x$-value there are exactly two $y$ values on the elliptic curve. So this is indeed a bijection. 
+We can see that this map is bijective. By \cref{ex:1.4.1}  $\wp_\Lambda$  takes every value twice. As this is an even function a certain $x \in \C$ must be taken twice, once by $z$ once by $-z$ and because $\wp'$ is an odd function $\wp'(z) \ne \wp'(-z)$ unless $z = 0$.  For every $x$-value there are exactly two $y$ values on the elliptic curve. So this is indeed a bijection. 
 
 We will now show that this map is in fact a group isomorphism.
 Let $z_1 + \Lambda, z_2 + \Lambda$ be points in $\C / \Lambda$.
@@ -694,31 +694,32 @@ Define the function \[
 	f(z) = a \wp_{\Lambda}(z) + b \wp'_\Lambda(z) + c
 .\] 
 Clearly $z_1, z_2$ are two zeros of this function. Obviously the third interesction of the line with the curve corresponds to the third zero of $f$. 
-By \cref{ex:1.4.1} we see that this third zero $z_3$ must be such that $z_1 + z_2 + z_3 + \Lambda = 0 + \Lambda$. 
+By \cref{ex:1.4.1} we see that this third zero, $z_3$, must be such that $z_1 + z_2 + z_3 + \Lambda = 0 + \Lambda$. 
 Hence $z_3 = - z_1 - z_2$. Its corresponding point on the elliptic curve is 
-$(\wp_\Lambda(z_3), \wp'_\Lambda(z_3)$. Then so $P + Q = (\wp_\Lambda(z_3), - \wp'_\Lambda(z_3)) = (\wp_\Lambda(-z_3), \wp'_\Lambda(-z_3)$. 
-So the map respects the group action. 
+$(\wp_\Lambda(z_3), \wp'_\Lambda(z_3))$.
+So $P + Q = (\wp_\Lambda(z_3), - \wp'_\Lambda(z_3)) = (\wp_\Lambda(-z_3), \wp'_\Lambda(-z_3)$. 
+Thus the map respects the group action. 
 
 
-From now on we will often say complex elliptic curve, instead of complex torus to highlight their interpretation as elliptic curves. Further, we will often denote complex elliptic curves with a simple symbold (often $E$) instead of always writing them as the quotient  $\C / \Lambda$. We write $E_\tau  = \C / \Lambda_\tau$.
+From now on we will often say complex elliptic curve, instead of complex torus to highlight their interpretation as elliptic curves. Further, we will often denote complex elliptic curves with a simple symbol (often $E$) instead of always writing them as the quotient  $\C / \Lambda$. In particular we write $E_\tau  = \C / \Lambda_\tau$.
 
-\todo{Optionally write about maps between complex curves}.
+I will state, but not prove, that the map from complex elliptic curves to ordinary elliptic curves is actually functorial, meaning that every morphism between complex elliptic curves corresponds to a morphism as a variety on the corresponding ordinary curves.
 
 \section{Modular Curves and Moduli Spaces} \label{sec:modular_curves_and_moduli_spaces}
 The title of this paper is modular curves, but so far have not defined these. 
 The definition of these objects is very simple, but like any object in this paper, the real suprises are it's relations to other objects. 
 \begin{definition}
-	Let $\Gamma \subset \SL_2\Z$ be any congruence subgroup. Then the \emph{modular curve} $Y(\Gamma)$ is defined as the set of orbits of $\mathcal{H} $ under  $\Gamma$, \[
+	Let $\Gamma \subset \SL_2\Z$ be any congruence subgroup. Then the \emph{modular curve}, $Y(\Gamma)$, is defined as the set of orbits of elements in  $\mathcal{H} $ under  the action of $\Gamma$, \[
 		Y(\Gamma) = \mathcal{H} / \sim = \{\Gamma \tau \;|\; \tau \in \mathcal{H} \} 
 	.\] 
 \end{definition}
 Recall the subgroups $\Gamma(N), \Gamma_1(N), \Gamma_0(N)$ from \cref{sec:subgroups_of_the_modular_group}. 
 Often we are interested in the modular curves corresponding to these congruence subgroups, so we denote \[
-	Y_0(N) = Y(\Gamma(N)),\; Y_1(N) = Y(\Gamma_1(N)),\; Y(N) = Y(\Gamma(N))
+	Y_0(N) = Y(\Gamma_0(N)),\;\;\; Y_1(N) = Y(\Gamma_1(N)),\;\;\; Y(N) = Y(\Gamma(N))
 .\]  
  
 In \cref{sec:modular_forms_and_complex_tori} we have seen that there is a bijective correspondence between equivaleny classes of complex elliptic curves and points in $Y (\SL_2\Z)$. 
-One may wonder whether there there is a similar result for modular curves $Y_0(N)$ and $Y_1(N)$.
+One may wonder whether there there is a similar result for modular curves $Y_0(N),Y_1(N)$ and $Y(N)$.
 It turns out there is. 
 Instead of restricting the isomorphisms between the complex elliptic curves, we will actually give the elliptic curves extra information, resulting in \emph{enhanced elliptic curves}. 
 
@@ -734,12 +735,12 @@ There are three common ways of `adding information' to elliptic curves, creating
 	\item An \emph{enhanced elliptic curve for $\Gamma_1(N)$} is an pair $(E, Q)$ where  $E$ is a complex elliptic curve and $Q$ is point in $E$ of order $N$.
 		Two of these curves $(E_1, Q_1), (E_2, Q_2)$ are equivalent if and only if there is an isomorphism from $E_1$ to $E_2$ that maps $Q_1$ to $Q_2$.
 		The associated \emph{moduli space} is \[
-			S_1(N) = \{ \text{enhanced elliptic curves for } \Gamma_0(N)\} / \sim
+			S_1(N) = \{ \text{enhanced elliptic curves for } \Gamma_1(N)\} / \sim
 		.\] 
 	\item An \emph{enhanced elliptic curve for $\Gamma(N)$} is an tripple $(E, P, Q)$ where  $E$ is a complex elliptic curve and $P, Q$ are points in the $N$-torsion subgroup $E[N]$ such  that the weil pairing  $e_N(P, Q) = 1$.
 		Two of these curves $(E_1, P_1, Q_1), (E_2, P_2, Q_2)$ are equivalent if and only if there is an isomorphism from $E_1$ to $E_2$ that maps $P_1$ to $P_2$ and $Q_1$ to $Q_2$
 		The associated \emph{moduli space} is \[
-			S(N) = \{ \text{enhanced elliptic curves for } \Gamma_0(N)\} / \sim
+			S(N) = \{ \text{enhanced elliptic curves for } \Gamma(N)\} / \sim
 		.\] 
 	\end{enumerate}	
 \end{definition}
@@ -750,7 +751,7 @@ There are three common ways of `adding information' to elliptic curves, creating
 	\label{fig:enhanced_elliptic_curves}
 \end{figure}
 \Cref{fig:enhanced_elliptic_curves} gives a visualisation of these enhanced elliptic curves.
-The following theorem gives a generalisation of the conclusion of \cref{sec:modular_curves_and_moduli_spaces}, showing that there are bijections in the modular curves $Y_0(N), Y_1(N), Y(N)$ and the moduli spaces $S_0(N), S_1(N), S(N)$, as well as providing more insight in what the moduli spaces look like. 
+The following theorem gives a generalisation of the conclusion of \cref{sec:modular_forms_and_complex_tori}, showing that there are bijections in the modular curves $Y_0(N), Y_1(N), Y(N)$ and the moduli spaces $S_0(N), S_1(N), S(N)$, as well as providing more insight in what the moduli spaces look like. 
 \begin{theorem}\label{thm:correspondence_modulispaces}
 	\hspace{\linewidth}
 	\begin{enumerate}
@@ -771,7 +772,7 @@ The following theorem gives a generalisation of the conclusion of \cref{sec:modu
 			Two curves in this form $(E_\tau, \tau / N + \Lambda_\tau,  1 / N + \Lambda_\tau )$ and $(E_\sigma, \sigma / N + \Lambda_\sigma,1 / N + \Lambda_\sigma)$ are equivalent if and only if $\Gamma\left( N \right) \tau = \Gamma(N) \sigma$. There is a bijective correspondence
 			\begin{align*}
 				S(N) &\longrightarrow Y(N) \\
-				\left[\frac{\C}{\Lambda_\tau}, \frac{\tau}{N} + \Lambda_\tau, \frac{1}{N} + \Lambda_\tau \right] &\longmapsto \Gamma_1(\N)\tau
+				\left[\frac{\C}{\Lambda_\tau}, \frac{\tau}{N} + \Lambda_\tau, \frac{1}{N} + \Lambda_\tau \right] &\longmapsto \Gamma(\N)\tau
 			.\end{align*}
 	\end{enumerate}
 \end{theorem}
@@ -792,7 +793,7 @@ The following theorem gives a generalisation of the conclusion of \cref{sec:modu
 		\begin{pmatrix} \omega_1 \\ \omega_2 \end{pmatrix} 
 		.\] 
 		As this is an invertible matrix it follows that $\Lambda = \omega_1' \Z \oplus \omega_2' \Z$. 
-	In this new basis we see that the enhanced elliptic curve looks like $(\C / \Lambda, \left< 1 / N \omega_2\right>)$.
+	In this new basis we see that the enhanced elliptic curve looks like $(\C / \Lambda, \left< 1 / N \omega_2'\right>)$.
 	Recall from \cref{sec:modular_forms_and_complex_tori} that  $\phi: z  + \Lambda \mapsto  \frac{1}{\omega_2'} z + \Lambda_\tau$ with $\tau = \frac{\omega_1}{\omega_2}$. 
 	This maps  $\left<\omega_2 / N \right>$ to $\left<1 / N + \Lambda_\tau \right>$.
 	Hence  \[
@@ -802,7 +803,7 @@ The following theorem gives a generalisation of the conclusion of \cref{sec:modu
 
 
 	
-	We will know prove that \[
+	We will now prove that \[
 		\left( E_\tau , \left<\frac{1}{N} + \Lambda_\tau \right> \right) \simeq 
 		\left( E_\sigma, \left<\frac{1}{N} + \Lambda_\sigma \right> \right) 
 	\]
@@ -813,9 +814,10 @@ The following theorem gives a generalisation of the conclusion of \cref{sec:modu
 	\begin{pmatrix} a & b \\ c & d \end{pmatrix} \begin{pmatrix} \sigma \\ 1 \end{pmatrix} 
 	,\] 
 	for some $\gamma = \begin{pmatrix} a & b \\ c & d \end{pmatrix}  \in \SL_2\Z$. 
-	We see that $\tau = \gamma \sigma$. If we can show that  $N \mathbin{\mid} c$ we are done.
+	We see that $\tau = \gamma \cdot \sigma$. If we can show that  $N \mathbin{\mid} c$ we are done.
 	We know that $m = c \sigma + d$. 
 	We know that $\phi$ maps $1 / N + \Lambda_\tau$ to a generator of $\left<1 / N + \Lambda_\sigma \right>$. 
+	So $\phi( 1 / N + \Lambda_\tau)$ as $0$ in it's $\sigma / N$ coordinate.
 	Putting this together yields \begin{align*}
 		m\left(\frac{1}{N} + \Lambda_\tau\right) &= (c \tau + d) \frac{1}{N} + \Lambda_\sigma \\ 
 		&= c \frac{\sigma}{N} + d \frac{1}{N} + \Lambda_\sigma \\
@@ -827,7 +829,7 @@ The following theorem gives a generalisation of the conclusion of \cref{sec:modu
 	Define  $m = c \sigma + d$. Reversing the reasoning for the other implication yields that  $\phi: z\mapsto  m z$ is an isomorphism. 
 
 	\item The first part is completely analogous to the case for $\Gamma_0.$ 
-	We will know prove that \[
+	We will now prove that \[
 		\left( E_\tau , \frac{1}{N} + \Lambda_\tau \right) \simeq 
 		\left( E_\sigma, \frac{1}{N} + \Lambda_\sigma \right) 
 	\]
@@ -857,9 +859,7 @@ The following theorem gives a generalisation of the conclusion of \cref{sec:modu
 	where $\Lambda = \omega_1 \Z \oplus \omega_2 \Z$ be any enhanced complex elliptic curve for $\Gamma(N)$.
 	As the Weil pairing of the two points is 1 we know that $ad - bc \equiv 1 \mod N $. 
 	It can be shown that we can find $a', b', c', d' \equiv a, b, c, d \mod N$ such that  $a'd' - b'c' = 1$. 
-	We will assume that this has been the case from the beginning. 
-	This means that the matrix  $\begin{pmatrix} a & b \\ c& d \end{pmatrix}  \in \SL_2\Z$ and hence invertible. 
-	Let \[
+	We will assume that this has been the case from the beginning.  This means that the matrix  $\begin{pmatrix} a & b \\ c& d \end{pmatrix}  \in \SL_2\Z$ and hence invertible.  Let \[
 		\begin{pmatrix} \omega_1' \\ \omega_2' \end{pmatrix}  = 
 		\begin{pmatrix} a & b \\ c & d \end{pmatrix} 
 		\begin{pmatrix} \omega_1 \\ \omega_2 \end{pmatrix} 
@@ -867,19 +867,19 @@ The following theorem gives a generalisation of the conclusion of \cref{sec:modu
 	As this is an invertible matrix it follows that $\Lambda = \omega_1' \Z \oplus \omega_2' \Z$. 
 	In this new basis we see that the enhanced elliptic curve looks like $(\C / \Lambda, 1 / N \omega_1,  1 / N \omega_2)$.
 	Recall from \cref{sec:modular_forms_and_complex_tori} that  $\phi: z  + \Lambda \mapsto  \frac{1}{\omega_2'} z + \Lambda_\tau$ with $\tau = \frac{\omega_1}{\omega_2}$. 
-	This maps  $\left<\omega_2 / N \right>$ to $\left<1 / N + \Lambda_\tau \right>$.
+	This maps  $\left<\omega_2 / N  + \Lambda \right>$ to $\left<1 / N + \Lambda_\tau \right>$.
 	Hence  \[
 		\left( C / \Lambda, a \frac{\omega_1}{N} + b \frac{\omega_2}{N} + \Lambda,  c \frac{\omega_1}{N}  + d \frac{\omega_2}{N}  + \Lambda \right)
 		\simeq
 		\left( E_\tau, \frac{\tau}{N} + \Lambda_\tau, \frac{1}{N} + \Lambda_\tau \right)
 	.\] 
 
-	We will know prove that \[
+	We will now prove that \[
 		\left( E_\tau , \frac{\tau}{N} + \Lambda_\tau, \frac{1}{N} + \Lambda_\tau \right) \simeq 
 		\left( E_\sigma, \frac{\sigma}{N} + \Lambda_ \sigma, \frac{1}{N} + \Lambda_\sigma \right) 
 	\]
 	if and only if $\tau = \gamma \cdot \sigma$ for some $\gamma \in \Gamma(N)$.
-	Recall that $\Gamma_0(N)$ is the set of all matrices $\begin{pmatrix} a & b \\ c & d \end{pmatrix} \in \SL_2\Z$ where $c \equiv d \equiv 0, a \equiv d \equiv 1 \mod N$. 
+	Recall that $\Gamma(N)$ is the set of all matrices $\begin{pmatrix} a & b \\ c & d \end{pmatrix} \in \SL_2\Z$ where $c \equiv d \equiv 0, a \equiv d \equiv 1 \mod N$. 
 
 	\ltr Suppose that $\phi: z\mapsto  m z$ is such an isomorphism is such an isomorphism.
 	Then $m \Lambda_\tau = \Lambda_\sigma$ for some $m$. So \[
@@ -902,7 +902,7 @@ The following theorem gives a generalisation of the conclusion of \cref{sec:modu
 	It follows that $\gamma  \in \Gamma(N)$. 
 
 	\rtl Suppose that $\tau = \gamma \cdot \sigma$ for some \[
-		\gamma = \begin{pmatrix} a & b \\ c & d  \end{pmatrix} \in \Gamma_1(N)
+		\gamma = \begin{pmatrix} a & b \\ c & d  \end{pmatrix} \in \Gamma(N)
 	.\] 	
 	Define $m = c \sigma + d$. Reversing the argument for the other implication yields that $\phi:z \mapsto m z$ is an isomorphism.
 	\end{enumerate}
@@ -921,7 +921,7 @@ There is a bijection between the weakly modular forms of degree $k$ on $\mathcal
 			F\left(E_2\right) &= m^{-k}F\left(E_1\right) 
 		.\end{align*}
 \end{definition}
-Given such a function $F$ we can define the function $f: \mathcal{H} \mapsto  \hat{\C}$  as \[
+Given such a function $F$ we can define the function $f: \mathcal{H} \mapsto  \C$  as \[
 	f(\tau) = \begin{cases}
 		F(E_\tau, \left<1 / N + \Lambda_\tau\right>), \\
 		F(E_\tau, 1 / N + \Lambda_\tau), \\
@@ -931,11 +931,11 @@ Given such a function $F$ we can define the function $f: \mathcal{H} \mapsto  \h
 The case considered depends on the conrguence subgroup $\Gamma$.
 It turns out that  $f$ is weight-$k$ invariant with respect to $\Gamma$. Indeed by \cref{thm:correspondence_modulispaces} if $\tau = \gamma \sigma$ for some  $\gamma = \begin{pmatrix} a & b \\ c & d \end{pmatrix}  \in \Gamma$ then the enhanced elliptic curves  $E_\tau, E_\sigma$ are isomorphic with isomorphism $\phi: E_\tau \to E_\sigma: z \mapsto (c \sigma + d) z$.
 From this it follows that \[
-	f(\tau) = F(E_\tau) = (c \sigma + d)^{k}F(E_\sigma) = (c \sigma + d)^{k}f(\sigma)
+	f(\gamma\cdot \sigma) = f(\tau) = F(E_\tau) = (c \sigma + d)^{k}F(E_\sigma) = (c \sigma + d)^{k}f(\sigma)
 .\]
 So $f(\tau )$ is weakly modular of degree $k$.
 
-Conversely if $f: \mathcal{H}  \to \C$ is weakly modular of degree $k$, then we can define a funciton $F: E_\tau\mapsto f(\tau)$. 
+Conversely if $f: \mathcal{H}  \to \C$ is weakly modular of degree $k$, then we can define a function $F: E_\tau\mapsto f(\tau)$. 
 \Cref{thm:correspondence_modulispaces} shows that every enhanced elliptic curve is isomorphic to some $E_\tau$ for some $\tau \in \mathcal{H} $. So we can extend $F$ uniquely to a homogeneous function on the set of enhanced elliptic curves for  $\Gamma$. 
 It is an easy exercise to see that this extension is well defined. 
 \section{Appendices}
@@ -953,15 +953,15 @@ It is an easy exercise to see that this extension is well defined.
 		A =\begin{pmatrix} a & b \\ c& d\end{pmatrix} \in \SL_2\Z \setminus \mathcal{A} 
 	\] 
 	with mimimal 1-norm, i.e. $|a| + |b| + |c| + |d|$ is minimal.
-	We know that the determinant is one, hence $ad- bc = 1$. From this a couple things follow. Atleast one of  $|a|, |b|,|c|,|d|$ is greater or equal to 3 because all the matrices where $a, b, c, d = \pm 1, \pm 2$ can clearly be constructed using the generators. Suppose that without loss of ggenerality that $|a|$ is a largest value among these (otherwise we can multiply by $\gamma$ on the left or right side to bring the largest value to the top left corner).
+	We know that the determinant is one, hence $ad- bc = 1$. From this a couple things follow. Atleast one of  $|a|, |b|,|c|,|d|$ is greater or equal to 3 because all the matrices where $a, b, c, d = \pm 1, \pm 2$ can clearly be constructed using the generators. Suppose that without loss of generality that $|a|$ is a largest value among these (otherwise we can multiply by $\gamma$ on the left or right side to bring the largest value to the top left corner).
 	As  $ab - bc = 1$ we can see that neither  $b, c, d$ can be equal to $\pm a$.  
 	So  $|a|$ is not just a largest, it is the largest. 
 	We can also see that $|d|$ cannot be the second largest. 
 	Suppose without loss of generality that $|c|$ is the second largest value (otherwise the same argument holds with multiplication on the right).
-	Then  \[
+	I claim that one of the following matrices will have smaller 1-norm than $A$ \[
 		\beta A = \begin{pmatrix} a + c & b + d  \\ c & d\end{pmatrix}, \; \beta^{-1} A = \begin{pmatrix} a - c & b - d \\ c & d \end{pmatrix} 
 	.\]
-	Then either $|a + c| = |a| - |c|$ or  $|a - c| =  |a|  - |c|$. Suppose it's the first case. 
+	Either $|a + c| = |a| - |c|$ or  $|a - c| =  |a|  - |c|$. Suppose it's the first case. 
 	Then the 1-norm of $\beta A$ is
 	 \[
 	|a + c| + |b + d| + |b| + |d| \le |a| - |c| + |b| + 2|d| < |a| + |b| + |c| + |d|
@@ -1018,7 +1018,7 @@ The Weierstrass function $\wp_{\Lambda}$ has only one pole of order 2. Hence in 
 		\int_{\partial P + t} z \frac{f'(z)}{f(z)} \mathrm d z &= \int_t^{\omega_1 + t} (z + \omega_2 - z) \frac{f'(z)}{f(z)} \mathrm d z + \int_{t}^{\omega_2 + t} (z - z - \omega_1) \frac{f'(z)}{f(z)} \mathrm d z\\
 								       &= \omega_2 \int_t^{\omega_1 + t} 1 \; \mathrm d \ln f(z) - \omega_1 \int_t^{\omega_2 +t} 1 \; \mathrm d \ln f(z) \\
 	.\end{align*} 
-	From this we see that the integrals must be integer multiples of  $2\pi i$. 
+	From this we see that the integrals must be integer multiples of  $2\pi i$ as $f(z)$ takes the same value on the boundary points. 
 	Hence 
 	\[
 		\frac{1}{2\pi i } \int_{\partial P + t} z \frac{f'(z)}{f(z)} \mathrm d z \in \Lambda

@@ -38,7 +38,7 @@
   \newcommand*\fsize{\dimexpr\f@size pt\relax}%
   \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
   \ifx\svgwidth\undefined%
-    \setlength{\unitlength}{487.19252014bp}%
+    \setlength{\unitlength}{487.19998169bp}%
     \ifx\svgscale\undefined%
       \relax%
     \else%
@@ -50,27 +50,27 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,0.26819993)%
+  \begin{picture}(1,0.29233375)%
     \lineheight{1}%
     \setlength\tabcolsep{0pt}%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{enhanced_elliptic_curves.pdf}}%
-    \put(0.26600886,0.06224141){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\omega_2$\end{tabular}}}}%
-    \put(0.09328576,0.20596037){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\omega_1$\end{tabular}}}}%
-    \put(0.0951925,0.04873412){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\frac{\omega_2}{N}$\end{tabular}}}}%
-    \put(0.0228872,0.09886605){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\frac{\omega_1}{N}$\end{tabular}}}}%
+    \put(0.26704773,0.05572582){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\omega_2$\end{tabular}}}}%
+    \put(0.09374077,0.20844951){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\omega_1$\end{tabular}}}}%
+    \put(0.09519104,0.04871843){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\frac{\omega_2}{N}$\end{tabular}}}}%
+    \put(0.02288685,0.09884959){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\frac{\omega_1}{N}$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=2]{enhanced_elliptic_curves.pdf}}%
-    \put(0.5776645,0.06238181){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\omega_2$\end{tabular}}}}%
-    \put(0.40494141,0.20610076){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\omega_1$\end{tabular}}}}%
-    \put(0.40684846,0.04873459){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\frac{\omega_2}{N}$\end{tabular}}}}%
-    \put(0.32837742,0.09900706){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\frac{\omega_1}{N}$\end{tabular}}}}%
+    \put(0.57869861,0.05586622){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\omega_2$\end{tabular}}}}%
+    \put(0.40539149,0.20859005){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\omega_1$\end{tabular}}}}%
+    \put(0.40684223,0.0487189){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\frac{\omega_2}{N}$\end{tabular}}}}%
+    \put(0.3283724,0.0989906){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\frac{\omega_1}{N}$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=3]{enhanced_elliptic_curves.pdf}}%
-    \put(0.90218242,0.06224172){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\omega_2$\end{tabular}}}}%
-    \put(0.72945932,0.20596068){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\omega_1$\end{tabular}}}}%
-    \put(0.73136622,0.04873443){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\frac{\omega_2}{N}$\end{tabular}}}}%
-    \put(0.65957447,0.10482781){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\frac{\omega_1}{N}$\end{tabular}}}}%
-    \put(0.13838929,0.24199848){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\Gamma_0(N), (E, C)$\end{tabular}}}}%
-    \put(0.44304175,0.24199771){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\Gamma_1(N), (E,Q)$\end{tabular}}}}%
-    \put(0.76156557,0.24199864){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\Gamma(N), (E, P, Q)$\end{tabular}}}}%
+    \put(0.90321155,0.05572613){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\omega_2$\end{tabular}}}}%
+    \put(0.72990458,0.20844951){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\omega_1$\end{tabular}}}}%
+    \put(0.73135502,0.04871874){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\frac{\omega_2}{N}$\end{tabular}}}}%
+    \put(0.65956437,0.10481111){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\frac{\omega_1}{N}$\end{tabular}}}}%
+    \put(0.13838717,0.24197983){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\Gamma_0(N), (E,C)$ \end{tabular}}}}%
+    \put(0.44303496,0.24197906){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\Gamma_1(N), (E,Q)$\end{tabular}}}}%
+    \put(0.76155391,0.24197983){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\Gamma(N), (E,Q,P)$ \end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=4]{enhanced_elliptic_curves.pdf}}%
   \end{picture}%
 \endgroup%

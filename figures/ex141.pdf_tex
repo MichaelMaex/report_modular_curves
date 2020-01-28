@@ -38,7 +38,7 @@
   \newcommand*\fsize{\dimexpr\f@size pt\relax}%
   \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
   \ifx\svgwidth\undefined%
-    \setlength{\unitlength}{1010.05774791bp}%
+    \setlength{\unitlength}{757.57498169bp}%
     \ifx\svgscale\undefined%
       \relax%
     \else%
@@ -50,16 +50,17 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,0.35061553)%
+  \begin{picture}(1,0.35055937)%
     \lineheight{1}%
     \setlength\tabcolsep{0pt}%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{ex141.pdf}}%
-    \put(0.32274258,0.22497379){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\omega_1$\end{tabular}}}}%
-    \put(0.60336703,0.10439712){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\omega_2$\end{tabular}}}}%
-    \put(0.4610252,0.03970735){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\partial p$\end{tabular}}}}%
-    \put(0.56225596,0.31383465){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\partial p + t$\end{tabular}}}}%
+    \put(0.32272974,0.2249221){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\omega_1$\end{tabular}}}}%
+    \put(0.60334176,0.10435077){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\omega_2$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=2]{ex141.pdf}}%
-    \put(0.43418905,0.15766672){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$P$\end{tabular}}}}%
+    \put(0.43417148,0.15761846){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$P$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=3]{ex141.pdf}}%
+    \put(0.46360183,0.29720277){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\partial P + t$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=4]{ex141.pdf}}%
+    \put(0.37557728,0.0754367){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$t$\end{tabular}}}}%
   \end{picture}%
 \endgroup%
